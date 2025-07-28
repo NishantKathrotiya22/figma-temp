@@ -1093,7 +1093,19 @@ function parseDate(date) {
   // Excel formula: INT(MOD(date-WEEKDAY(date,2)+1/7,2))+1
   let parity = Math.floor((daysSinceEpoch - weekday2 + 1 / 7) % 2) + 1;
 
-  return `${weekday} - ${day}-${month}-${year}-Week-${parity}`;
+  let label = `${weekday} - ${day}-${month}-${year} (Week-${parity})`;
+
+  const colorMap = {
+    1: "#ff0026ff", 
+    2: "#225f27ff", 
+  };
+
+  const color = colorMap[parity] || "#00000";
+
+  // Return HTML string with inline background style
+  return {
+    html: `<div style="color: ${color}; padding: 4px 8px; border-radius: 4px;">${label}</div>`,
+  };
 }
 
 function disposeAllTooltips() {
