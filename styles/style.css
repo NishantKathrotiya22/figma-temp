@@ -308,7 +308,7 @@ select:focus>option:hover {
     display: flex;
     gap: 1rem;
     align-items: center;
-    height: 100%;
+    height: 7.8rem;
     display: flex;
     align-items: center;
     padding-left: 2rem !important;
@@ -353,10 +353,21 @@ select:focus>option:hover {
 .ec-resource,
 .ec-day-head,
 .ec-days {
-    padding: 0 !important;
-    margin: 0 !important;
     border: none !important;
     box-sizing: content-box !important;
+}
+
+/* ========================================================
+   Prevent Resources from Being Compressed Horizontally
+   ======================================================== */
+.ec-resource,
+.ec-resource>span,
+.ec-resource>span>.person-details {
+    width: 249px !important;
+}
+.ec-resource{
+    display: flex;
+    align-items: center;
 }
 
 /* ========================================================
@@ -396,6 +407,7 @@ select:focus>option:hover {
 /* Right dashed line between resources */
 
 .ec-timeline .ec-sidebar .ec-resource {
+    height: 8rem;
     border-right: 3px dashed var(--border-color) !important;
     border-bottom: 3px solid var(--border-color) !important;
 }
@@ -405,14 +417,14 @@ select:focus>option:hover {
     position: relative;
 }
 
-/* .ec-resource:last-child .person-details::after {
+.ec-resource:last-child .person-details::after {
     content: "";
     position: absolute !important;
     bottom: -3px;
     height: 3px;
     width: 100%;
     border-bottom: 3px solid var(--border-color);
-} */
+}
 
 
 /***** Vertical Sepration lines (Dahsed) *****/
@@ -443,45 +455,34 @@ select:focus>option:hover {
    ======================================================== */
 
 /***** Horizontal Sepration Line in canvas *****/
-.ec-body .ec-days:not(:last-child) {
+.ec-body .ec-days {
     border-bottom: 3px dashed var(--border-color) !important;
 }
 
 
 /***** Last Line Under Event *****/
 .ec-days:last-child {
-    position: relative;
     border-bottom: 3px solid var(--border-color) !important;
 }
 
 /**** Fix For Last line in case of 1 or 2 Elements ****/
-.ec-days:last-child .ec-day::after {
-    content: " ";
-    width: 100%;
-    bottom: 0;
-    position: absolute;
+.ec-days:last-child .ec-day {
     box-sizing: content-box;
     margin-bottom: 3px !important;
     border-bottom: 3px dashed var(--border-color) !important;
 }
 
-
-/* .ec-content .ec-days:last-child .ec-day::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    box-sizing: content-box;
-    border-bottom: 3px dashed var(--border-color) !important;
-    top: var(--after-top, 0);
-} */
-
-
-
 /***** Calendar BG Color *****/
 .ec-today {
     background-color: transparent !important;
     flex-basis: 0 !important;
-    /* height: 8rem !important; */
+}
+
+.ec-time-grid .ec-time,
+.ec-time-grid .ec-line,
+.ec-events,
+.ec-resource {
+    min-height: 8rem;
 }
 
 
@@ -491,7 +492,6 @@ select:focus>option:hover {
 
 /***** Genral Timeline Style  *****/
 .ec-event {
-    flex-basis: 0 !important;
     height: 8rem;
 }
 
@@ -587,30 +587,6 @@ select:focus>option:hover {
 
 
 /* ========================================================
-                     Adjusting Top Timeline
-   ======================================================== */
-
-
-
-.ec-timeline .ec-time,
-.ec-timeline .ec-line {
-    width: 249px;
-}
-
-.ec-time-grid .ec-time,
-.ec-time-grid .ec-line {
-    height: 80px;
-}
-
-
-.ec-content>.ec-days>.ec-day>.ec-events,
-.ec-resource {
-    min-height: 8rem !important;
-}
-
-
-
-/* ========================================================
                         Timeline Vartiations
    ======================================================== */
 
@@ -625,8 +601,6 @@ select:focus>option:hover {
 .ec-event-active::after {
     background: linear-gradient(to top right, transparent 50%, var(--timeline-text) 50%);
 }
-
-
 
 /**** Add Background Color To Event Holder ****/
 
@@ -656,6 +630,10 @@ select:focus>option:hover {
 }
 
 
+
+
+
+
 /*****  Active Timeline (Pink) *****/
 .ec-event-pink {
     background-color: var(--timeline-pink-bg) !important;
@@ -679,6 +657,7 @@ select:focus>option:hover {
 
 
 
+
 /*****  Active Timeline (Gray) *****/
 .ec-event-gray {
     background-color: var(--timeline-gray-bg) !important;
@@ -690,35 +669,4 @@ select:focus>option:hover {
 
 .ec-events:has(.ec-event-gray) {
     background-color: var(--timeline-container-gray-bg) !important;
-}
-
-.ec-events {
-    padding: 5px 0 !important;
-}
-
-.ec-resource:last-child::after {
-    height: 0;
-    border: none;
-}
-
-.ec-resource:last-child .person-details {
-    width: 100%;
-    padding: 5px 0 5px 20px;
-}
-
-.ec-resource:last-child {
-    position: relative;
-}
-
-.ec-resource:last-child .person-details::after {
-    content: ' ';
-    position: absolute;
-    width: 2490px;
-    bottom: 1px;
-    left: 0;
-    border-top: 3px solid var(--border-color);
-}
-
-.ec-days {
-    height: fit-content !important;
 }

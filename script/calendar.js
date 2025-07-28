@@ -994,7 +994,7 @@ function syncDynamicHeight() {
     ".ec-resource:last-child .person-details"
   );
 
-  const targetDay = document.querySelector(".ec-days:last-child .ec-day");
+  // const targetDay = document.querySelector(".ec-days:last-child .ec-day");
 
   if (dayContainers.length && target) {
     let maxHeight = 80;
@@ -1015,7 +1015,7 @@ function syncDynamicHeight() {
     });
 
     target.style.height = maxHeight + 10 + 0 + "px";
-    targetDay.style.setProperty("--after-top", `${maxHeight + 6}px`);
+    // targetDay.style.setProperty("--after-top", `${maxHeight + 6}px`);
 
     console.log("Applied max dynamic height:", maxHeight);
   } else {
