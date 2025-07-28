@@ -1096,8 +1096,8 @@ function parseDate(date) {
   let label = `${weekday} - ${day}-${month}-${year} (Week-${parity})`;
 
   const colorMap = {
-    1: "#ff0026ff", 
-    2: "#225f27ff", 
+    1: "#ff0026ff",
+    2: "#225f27ff",
   };
 
   const color = colorMap[parity] || "#00000";
@@ -1163,8 +1163,8 @@ function renderEventDetails(arg) {
             <p><span
                     class="event-emp-id">${arg.event.extendedProps.employeeID}</span>${arg.event.extendedProps.employeeName}
             </p>
-            <p>${arg.event.extendedProps.address}</p>
-            <p>${arg.event.extendedProps.careerType}</p>
+             <p>${arg.event.extendedProps.region}</p>
+            <p>${arg.event.extendedProps.eventType}</p>
             <p>${arg.event.extendedProps.duration}</p>
         </div>
          <div class="event-disp-icon">
