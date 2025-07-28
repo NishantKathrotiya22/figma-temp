@@ -1127,7 +1127,7 @@ function renderTooltipContent(arg) {
         <p>Address (Work Order)</p>
         <p>${arg.event.extendedProps.address}</p>
         <p>Resources</p>
-        <p>${arg.event.extendedProps.careerType}</p>
+        <p>${arg.event.extendedProps.eventType}</p>
         <p>Booking Status</p>
         <p>${arg.event.extendedProps.bookingStatus}</p>
       </div>
