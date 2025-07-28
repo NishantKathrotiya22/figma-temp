@@ -29,8 +29,8 @@ function setIntialData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-07-25T11:45:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T11:45:00+05:30"),
+      end: new Date("2025-07-29T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -50,8 +50,8 @@ function setIntialData() {
     },
     {
       resourceId: "1",
-      start: new Date("2025-07-25T11:55:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T11:55:00+05:30"),
+      end: new Date("2025-07-28T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -71,8 +71,8 @@ function setIntialData() {
     },
     {
       resourceId: "2",
-      start: new Date("2025-07-25T12:00:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T12:00:00+05:30"),
+      end: new Date("2025-07-28T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -88,9 +88,45 @@ function setIntialData() {
       },
     },
     {
-      resourceId: "3",
-      start: new Date("2025-07-25T13:30:00+05:30"),
-      end: new Date("2025-07-25T15:00:00+05:30"),
+      resourceId: "1",
+      start: new Date("2025-07-28T09:20:00+05:30"),
+      end: new Date("2025-07-28T11:00:00+05:30"),
+      editable: false,
+      durationEditable: false,
+      eventStartEditable: false,
+      className: ["ec-event-active"],
+      extendedProps: {
+        employeeID: "100125",
+        employeeName: "Liam Bennett",
+        address: "34 Pitt Street, Redfern NSW",
+        careerType: "Care Type xyz",
+        bookingStatus: "Completed",
+        region: "Bowral",
+        eventType: "Care Worker",
+      },
+    },
+    {
+      resourceId: "1",
+      start: new Date("2025-07-28T10:35:00+05:30"),
+      end: new Date("2025-07-28T15:00:00+05:30"),
+      editable: false,
+      durationEditable: false,
+      eventStartEditable: false,
+      className: ["ec-event-active"],
+      extendedProps: {
+        employeeID: "100125",
+        employeeName: "Liam Bennett",
+        address: "34 Pitt Street, Redfern NSW",
+        careerType: "Care Type xyz",
+        bookingStatus: "Completed",
+        region: "Bowral",
+        eventType: "Care Worker",
+      },
+    },
+    {
+      resourceId: "18",
+      start: new Date("2025-07-28T13:45:00+05:30"),
+      end: new Date("2025-07-28T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -107,8 +143,8 @@ function setIntialData() {
     },
     {
       resourceId: "4",
-      start: new Date("2025-07-25T01:45:00+05:30"),
-      end: new Date("2025-07-25T12:45:00+05:30"),
+      start: new Date("2025-07-28T01:45:00+05:30"),
+      end: new Date("2025-07-28T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -125,8 +161,8 @@ function setIntialData() {
     },
     {
       resourceId: "5",
-      start: new Date("2025-07-25T10:00:00+05:30"),
-      end: new Date("2025-07-25T11:00:00+05:30"),
+      start: new Date("2025-07-28T10:00:00+05:30"),
+      end: new Date("2025-07-28T11:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -143,8 +179,8 @@ function setIntialData() {
     },
     {
       resourceId: "6",
-      start: new Date("2025-07-25T08:00:00+05:30"),
-      end: new Date("2025-07-25T09:30:00+05:30"),
+      start: new Date("2025-07-28T08:00:00+05:30"),
+      end: new Date("2025-07-28T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -161,8 +197,8 @@ function setIntialData() {
     },
     {
       resourceId: "7",
-      start: new Date("2025-07-25T10:00:00+05:30"),
-      end: new Date("2025-07-25T11:15:00+05:30"),
+      start: new Date("2025-07-28T10:00:00+05:30"),
+      end: new Date("2025-07-28T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -179,8 +215,8 @@ function setIntialData() {
     },
     {
       resourceId: "8",
-      start: new Date("2025-07-25T11:30:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T11:30:00+05:30"),
+      end: new Date("2025-07-28T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -197,8 +233,8 @@ function setIntialData() {
     },
     {
       resourceId: "9",
-      start: new Date("2025-07-25T13:15:00+05:30"),
-      end: new Date("2025-07-25T14:45:00+05:30"),
+      start: new Date("2025-07-28T13:15:00+05:30"),
+      end: new Date("2025-07-28T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -215,8 +251,8 @@ function setIntialData() {
     },
     {
       resourceId: "10",
-      start: new Date("2025-07-25T09:00:00+05:30"),
-      end: new Date("2025-07-25T10:30:00+05:30"),
+      start: new Date("2025-07-28T09:00:00+05:30"),
+      end: new Date("2025-07-28T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -233,8 +269,8 @@ function setIntialData() {
     },
     {
       resourceId: "11",
-      start: new Date("2025-07-25T14:00:00+05:30"),
-      end: new Date("2025-07-25T15:00:00+05:30"),
+      start: new Date("2025-07-28T14:00:00+05:30"),
+      end: new Date("2025-07-28T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -251,8 +287,8 @@ function setIntialData() {
     },
     {
       resourceId: "12",
-      start: new Date("2025-07-25T10:45:00+05:30"),
-      end: new Date("2025-07-25T12:00:00+05:30"),
+      start: new Date("2025-07-28T10:45:00+05:30"),
+      end: new Date("2025-07-28T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -269,8 +305,8 @@ function setIntialData() {
     },
     {
       resourceId: "13",
-      start: new Date("2025-07-25T08:30:00+05:30"),
-      end: new Date("2025-07-25T09:30:00+05:30"),
+      start: new Date("2025-07-28T08:30:00+05:30"),
+      end: new Date("2025-07-28T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -287,8 +323,8 @@ function setIntialData() {
     },
     {
       resourceId: "14",
-      start: new Date("2025-07-25T15:00:00+05:30"),
-      end: new Date("2025-07-25T16:30:00+05:30"),
+      start: new Date("2025-07-28T15:00:00+05:30"),
+      end: new Date("2025-07-28T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -305,8 +341,8 @@ function setIntialData() {
     },
     {
       resourceId: "15",
-      start: new Date("2025-07-25T13:00:00+05:30"),
-      end: new Date("2025-07-25T14:00:00+05:30"),
+      start: new Date("2025-07-28T13:00:00+05:30"),
+      end: new Date("2025-07-28T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -323,8 +359,8 @@ function setIntialData() {
     },
     {
       resourceId: "16",
-      start: new Date("2025-07-25T11:15:00+05:30"),
-      end: new Date("2025-07-25T12:45:00+05:30"),
+      start: new Date("2025-07-28T11:15:00+05:30"),
+      end: new Date("2025-07-28T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -341,8 +377,8 @@ function setIntialData() {
     },
     {
       resourceId: "17",
-      start: new Date("2025-07-25T08:45:00+05:30"),
-      end: new Date("2025-07-25T10:00:00+05:30"),
+      start: new Date("2025-07-28T08:45:00+05:30"),
+      end: new Date("2025-07-28T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -359,8 +395,8 @@ function setIntialData() {
     },
     {
       resourceId: "18",
-      start: new Date("2025-07-25T14:15:00+05:30"),
-      end: new Date("2025-07-25T15:30:00+05:30"),
+      start: new Date("2025-07-28T14:15:00+05:30"),
+      end: new Date("2025-07-28T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -530,8 +566,8 @@ function setLeaveData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-07-25T10:45:00+05:30"),
-      end: new Date("2025-07-25T12:00:00+05:30"),
+      start: new Date("2025-07-28T10:45:00+05:30"),
+      end: new Date("2025-07-28T12:00:00+05:30"),
       id: "123",
       type: "Full",
       editable: false,
@@ -550,8 +586,8 @@ function setLeaveData() {
     },
     {
       resourceId: "2",
-      start: new Date("2025-07-25T10:00:00+05:30"),
-      end: new Date("2025-07-25T10:00:00+05:30"),
+      start: new Date("2025-07-28T10:00:00+05:30"),
+      end: new Date("2025-07-28T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -568,8 +604,8 @@ function setLeaveData() {
     },
     {
       resourceId: "3",
-      start: new Date("2025-07-25T13:30:00+05:30"),
-      end: new Date("2025-07-25T15:00:00+05:30"),
+      start: new Date("2025-07-28T13:30:00+05:30"),
+      end: new Date("2025-07-28T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -586,8 +622,8 @@ function setLeaveData() {
     },
     {
       resourceId: "4",
-      start: new Date("2025-07-25T09:45:00+05:30"),
-      end: new Date("2025-07-25T10:45:00+05:30"),
+      start: new Date("2025-07-28T09:45:00+05:30"),
+      end: new Date("2025-07-28T10:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -604,8 +640,8 @@ function setLeaveData() {
     },
     {
       resourceId: "5",
-      start: new Date("2025-07-25T12:00:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T12:00:00+05:30"),
+      end: new Date("2025-07-28T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -622,8 +658,8 @@ function setLeaveData() {
     },
     {
       resourceId: "6",
-      start: new Date("2025-07-25T08:00:00+05:30"),
-      end: new Date("2025-07-25T09:30:00+05:30"),
+      start: new Date("2025-07-28T08:00:00+05:30"),
+      end: new Date("2025-07-28T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -640,8 +676,8 @@ function setLeaveData() {
     },
     {
       resourceId: "7",
-      start: new Date("2025-07-25T10:00:00+05:30"),
-      end: new Date("2025-07-25T11:15:00+05:30"),
+      start: new Date("2025-07-28T10:00:00+05:30"),
+      end: new Date("2025-07-28T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -658,8 +694,8 @@ function setLeaveData() {
     },
     {
       resourceId: "8",
-      start: new Date("2025-07-25T11:30:00+05:30"),
-      end: new Date("2025-07-25T13:00:00+05:30"),
+      start: new Date("2025-07-28T11:30:00+05:30"),
+      end: new Date("2025-07-28T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -676,8 +712,8 @@ function setLeaveData() {
     },
     {
       resourceId: "9",
-      start: new Date("2025-07-25T13:15:00+05:30"),
-      end: new Date("2025-07-25T14:45:00+05:30"),
+      start: new Date("2025-07-28T13:15:00+05:30"),
+      end: new Date("2025-07-28T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -694,8 +730,8 @@ function setLeaveData() {
     },
     {
       resourceId: "10",
-      start: new Date("2025-07-25T09:00:00+05:30"),
-      end: new Date("2025-07-25T10:30:00+05:30"),
+      start: new Date("2025-07-28T09:00:00+05:30"),
+      end: new Date("2025-07-28T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -712,8 +748,8 @@ function setLeaveData() {
     },
     {
       resourceId: "11",
-      start: new Date("2025-07-25T14:00:00+05:30"),
-      end: new Date("2025-07-25T15:00:00+05:30"),
+      start: new Date("2025-07-28T14:00:00+05:30"),
+      end: new Date("2025-07-28T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -730,8 +766,8 @@ function setLeaveData() {
     },
     {
       resourceId: "12",
-      start: new Date("2025-07-25T10:45:00+05:30"),
-      end: new Date("2025-07-25T12:00:00+05:30"),
+      start: new Date("2025-07-28T10:45:00+05:30"),
+      end: new Date("2025-07-28T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -748,8 +784,8 @@ function setLeaveData() {
     },
     {
       resourceId: "13",
-      start: new Date("2025-07-25T08:30:00+05:30"),
-      end: new Date("2025-07-25T09:30:00+05:30"),
+      start: new Date("2025-07-28T08:30:00+05:30"),
+      end: new Date("2025-07-28T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -766,8 +802,8 @@ function setLeaveData() {
     },
     {
       resourceId: "14",
-      start: new Date("2025-07-25T15:00:00+05:30"),
-      end: new Date("2025-07-25T16:30:00+05:30"),
+      start: new Date("2025-07-28T15:00:00+05:30"),
+      end: new Date("2025-07-28T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -784,8 +820,8 @@ function setLeaveData() {
     },
     {
       resourceId: "15",
-      start: new Date("2025-07-25T13:00:00+05:30"),
-      end: new Date("2025-07-25T14:00:00+05:30"),
+      start: new Date("2025-07-28T13:00:00+05:30"),
+      end: new Date("2025-07-28T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -802,8 +838,8 @@ function setLeaveData() {
     },
     {
       resourceId: "16",
-      start: new Date("2025-07-25T11:15:00+05:30"),
-      end: new Date("2025-07-25T12:45:00+05:30"),
+      start: new Date("2025-07-28T11:15:00+05:30"),
+      end: new Date("2025-07-28T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -820,8 +856,8 @@ function setLeaveData() {
     },
     {
       resourceId: "17",
-      start: new Date("2025-07-25T08:45:00+05:30"),
-      end: new Date("2025-07-25T10:00:00+05:30"),
+      start: new Date("2025-07-28T08:45:00+05:30"),
+      end: new Date("2025-07-28T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -838,8 +874,8 @@ function setLeaveData() {
     },
     {
       resourceId: "18",
-      start: new Date("2025-07-25T14:15:00+05:30"),
-      end: new Date("2025-07-25T15:30:00+05:30"),
+      start: new Date("2025-07-28T14:15:00+05:30"),
+      end: new Date("2025-07-28T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -950,6 +986,43 @@ function setLeaveData() {
   reRenderEvents();
 }
 
+function syncDynamicHeight() {
+  const dayContainers = document.querySelectorAll(
+    ".ec-content > .ec-days:last-child > .ec-day > .ec-events"
+  );
+  const target = document.querySelector(
+    ".ec-resource:last-child .person-details"
+  );
+
+  const targetDay = document.querySelector(".ec-days:last-child .ec-day");
+
+  if (dayContainers.length && target) {
+    let maxHeight = 80;
+
+    dayContainers.forEach((eventsContainer) => {
+      const events = eventsContainer.querySelectorAll(".ec-event");
+
+      if (events.length > 0) {
+        let totalHeight = 0;
+        events.forEach((ev) => {
+          totalHeight += ev.offsetHeight;
+        });
+
+        if (totalHeight > maxHeight) {
+          maxHeight = totalHeight;
+        }
+      }
+    });
+
+    target.style.height = maxHeight + 10 + 0 + "px";
+    targetDay.style.setProperty("--after-top", `${maxHeight + 6}px`);
+
+    console.log("Applied max dynamic height:", maxHeight);
+  } else {
+    console.warn("syncDynamicHeight: Source or Target elements not found.");
+  }
+}
+
 function reRenderEvents() {
   // Cleanup Old Tooltips
   disposeAllTooltips();
@@ -961,6 +1034,7 @@ function reRenderEvents() {
   //Intialze Tooltip Again
   setTimeout(() => {
     initializeAllTooltips();
+    syncDynamicHeight();
   }, 0);
 }
 
@@ -1178,6 +1252,7 @@ function upadateResources(data) {
 
     setTimeout(() => {
       initializeAllTooltips();
+      syncDynamicHeight();
     }, 0);
   }
 }
@@ -1343,6 +1418,8 @@ function renderSearch() {
     filterState.sortAsc = !filterState.sortAsc;
     applyAllFilters();
   });
+
+  syncDynamicHeight();
 }
 
 function createCalendar() {
@@ -1368,9 +1445,11 @@ function createCalendar() {
     eventContent: renderEventDetails,
     resourceLabelContent: renderResources,
     viewDidMount: renderSearch,
-    eventAllUpdated: initializeAllTooltips,
+    eventAllUpdated: () => {
+      initializeAllTooltips();
+      syncDynamicHeight();
+    },
     // titleFormat: (start, end) => parseDate(start),
-
     // filterResourcesWithEvents: true, // Remove Comment in both to hide resources without Event and visaverca
     // filterEventsWithResources: true,
 

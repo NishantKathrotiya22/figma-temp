@@ -360,27 +360,6 @@ select:focus>option:hover {
 }
 
 /* ========================================================
-   Uniform Height for Timeline, Events, and Resources
-   ======================================================== */
-/* .ec-time-grid .ec-time,
-.ec-time-grid .ec-line,
-.ec-event,
-.ec-resource,
-.ec-days,
-.ec-day,
-.ec-events {
-    height: 8rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    flex-basis: 0 !important;
-} */
-
-/* ========================================================
-   Prevent Resources from Being Compressed Horizontally
-   ======================================================== */
-
-
-/* ========================================================
    Timeline Column Width (Time Labels & Lines)
    ======================================================== */
 .ec-timeline .ec-time,
@@ -388,28 +367,6 @@ select:focus>option:hover {
     width: 249px !important;
 }
 
-
-/* ========================================================
-   Days & Resources Height Consistency
-   ======================================================== */
-/* .ec-resource,
-.ec-days {
-    height: 8rem !important;
-    padding: 0 !important;
-} */
-
-/* ========================================================
-   Header Styling
-   ======================================================== */
-.ec-header>.ec-days,
-.ec-header>.ec-days>.ec-day {
-    /* height: max-content !important; */
-    height: 5.6rem !important;
-}
-
-/* ========================================================
-   Time Labels and Day Headers (Typography)
-   ======================================================== */
 .ec-times .ec-time,
 .ec-header .ec-day-head {
     font-size: 1.4rem;
@@ -486,22 +443,39 @@ select:focus>option:hover {
    ======================================================== */
 
 /***** Horizontal Sepration Line in canvas *****/
-.ec-body .ec-days {
+.ec-body .ec-days:not(:last-child) {
     border-bottom: 3px dashed var(--border-color) !important;
 }
 
 
 /***** Last Line Under Event *****/
 .ec-days:last-child {
+    position: relative;
     border-bottom: 3px solid var(--border-color) !important;
 }
 
 /**** Fix For Last line in case of 1 or 2 Elements ****/
-.ec-days:last-child .ec-day {
+.ec-days:last-child .ec-day::after {
+    content: " ";
+    width: 100%;
+    bottom: 0;
+    position: absolute;
     box-sizing: content-box;
     margin-bottom: 3px !important;
     border-bottom: 3px dashed var(--border-color) !important;
 }
+
+
+/* .ec-content .ec-days:last-child .ec-day::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    box-sizing: content-box;
+    border-bottom: 3px dashed var(--border-color) !important;
+    top: var(--after-top, 0);
+} */
+
+
 
 /***** Calendar BG Color *****/
 .ec-today {
@@ -613,6 +587,30 @@ select:focus>option:hover {
 
 
 /* ========================================================
+                     Adjusting Top Timeline
+   ======================================================== */
+
+
+
+.ec-timeline .ec-time,
+.ec-timeline .ec-line {
+    width: 249px;
+}
+
+.ec-time-grid .ec-time,
+.ec-time-grid .ec-line {
+    height: 80px;
+}
+
+
+.ec-content>.ec-days>.ec-day>.ec-events,
+.ec-resource {
+    min-height: 8rem !important;
+}
+
+
+
+/* ========================================================
                         Timeline Vartiations
    ======================================================== */
 
@@ -658,10 +656,6 @@ select:focus>option:hover {
 }
 
 
-
-
-
-
 /*****  Active Timeline (Pink) *****/
 .ec-event-pink {
     background-color: var(--timeline-pink-bg) !important;
@@ -685,7 +679,6 @@ select:focus>option:hover {
 
 
 
-
 /*****  Active Timeline (Gray) *****/
 .ec-event-gray {
     background-color: var(--timeline-gray-bg) !important;
@@ -699,22 +692,33 @@ select:focus>option:hover {
     background-color: var(--timeline-container-gray-bg) !important;
 }
 
-.ec-event:last-child {
-  
-    bottom: 5px;
+.ec-events {
+    padding: 5px 0 !important;
 }
 
-.ec-event:first-child {
-  
-    top: 5px;
-}
-
-.ec-resource:last-child{
-    align-items: start;
-}
-
-.ec-resource:last-child::after{
+.ec-resource:last-child::after {
     height: 0;
-    border: none ;
+    border: none;
 }
 
+.ec-resource:last-child .person-details {
+    width: 100%;
+    padding: 5px 0 5px 20px;
+}
+
+.ec-resource:last-child {
+    position: relative;
+}
+
+.ec-resource:last-child .person-details::after {
+    content: ' ';
+    position: absolute;
+    width: 2490px;
+    bottom: 1px;
+    left: 0;
+    border-top: 3px solid var(--border-color);
+}
+
+.ec-days {
+    height: fit-content !important;
+}
