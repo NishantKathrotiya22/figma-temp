@@ -994,32 +994,31 @@ function syncDynamicHeight() {
     ".ec-resource:last-child .person-details"
   );
 
-  const targetDay = document.querySelector(".ec-days:last-child .ec-day");
+  const ecDaysLast = document.querySelector(".ec-days:last-child");
+  const ecResourceLast = document.querySelector(".ec-resource:last-child");
 
-  if (dayContainers.length && target) {
-    let maxHeight = 80;
+  if (dayContainers.length && target && ecDaysLast && ecResourceLast) {
+    let maxOffsetTop = 0;
 
     dayContainers.forEach((eventsContainer) => {
       const events = eventsContainer.querySelectorAll(".ec-event");
 
-      if (events.length > 0) {
-        let totalHeight = 0;
-        events.forEach((ev) => {
-          totalHeight += ev.offsetHeight;
-        });
-
-        if (totalHeight > maxHeight) {
-          maxHeight = totalHeight;
+      events.forEach((ev) => {
+        const eventTop = ev.offsetTop;
+        if (eventTop > maxOffsetTop) {
+          maxOffsetTop = eventTop;
         }
-      }
+      });
     });
 
-    target.style.height = maxHeight + 10 + 0 + "px";
-    targetDay.style.setProperty("--after-top", `${maxHeight + 6}px`);
+    const finalTop = maxOffsetTop + 82;
+    target.style.height = finalTop + "px";
+    ecDaysLast.style.setProperty("--bor-top", `${finalTop}px`);
+    ecResourceLast.style.setProperty("--bor-top", `${finalTop}px`);
 
-    console.log("Applied max dynamic height:", maxHeight);
+    console.log("Applied dynamic --bor-top:", finalTop);
   } else {
-    console.warn("syncDynamicHeight: Source or Target elements not found.");
+    console.warn("syncDynamicHeight: Required elements not found.");
   }
 }
 

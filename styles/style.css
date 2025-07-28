@@ -353,8 +353,6 @@ select:focus>option:hover {
 .ec-resource,
 .ec-day-head,
 .ec-days {
-    padding: 0 !important;
-    margin: 0 !important;
     border: none !important;
     box-sizing: content-box !important;
 }
@@ -365,6 +363,16 @@ select:focus>option:hover {
 .ec-timeline .ec-time,
 .ec-timeline .ec-line {
     width: 249px !important;
+}
+
+.ec-time-grid .ec-time,
+.ec-time-grid .ec-line {
+    height: 80px;
+}
+
+.ec-content>.ec-days>.ec-day>.ec-events,
+.ec-resource {
+    min-height: 8rem !important;
 }
 
 .ec-times .ec-time,
@@ -380,6 +388,9 @@ select:focus>option:hover {
     font-weight: 500 !important;
 }
 
+.ec-events {
+    padding: 5px 0 !important;
+}
 
 
 /* ========================================================
@@ -399,20 +410,6 @@ select:focus>option:hover {
     border-right: 3px dashed var(--border-color) !important;
     border-bottom: 3px solid var(--border-color) !important;
 }
-
-/**** Fix For Last Child Resources ****/
-.ec-resource:last-child .person-details {
-    position: relative;
-}
-
-/* .ec-resource:last-child .person-details::after {
-    content: "";
-    position: absolute !important;
-    bottom: -3px;
-    height: 3px;
-    width: 100%;
-    border-bottom: 3px solid var(--border-color);
-} */
 
 
 /***** Vertical Sepration lines (Dahsed) *****/
@@ -454,34 +451,9 @@ select:focus>option:hover {
     border-bottom: 3px solid var(--border-color) !important;
 }
 
-/**** Fix For Last line in case of 1 or 2 Elements ****/
-.ec-days:last-child .ec-day::after {
-    content: " ";
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-    box-sizing: content-box;
-    margin-bottom: 3px !important;
-    border-bottom: 3px dashed var(--border-color) !important;
-}
-
-
-/* .ec-content .ec-days:last-child .ec-day::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    box-sizing: content-box;
-    border-bottom: 3px dashed var(--border-color) !important;
-    top: var(--after-top, 0);
-} */
-
-
-
 /***** Calendar BG Color *****/
 .ec-today {
     background-color: transparent !important;
-    flex-basis: 0 !important;
-    /* height: 8rem !important; */
 }
 
 
@@ -491,14 +463,12 @@ select:focus>option:hover {
 
 /***** Genral Timeline Style  *****/
 .ec-event {
-    flex-basis: 0 !important;
     height: 8rem;
 }
 
 .event-disp-container {
     position: relative;
     width: 100%;
-    /* z-index: 0 !important; */
 }
 
 .event-disp {
@@ -586,27 +556,6 @@ select:focus>option:hover {
 }
 
 
-/* ========================================================
-                     Adjusting Top Timeline
-   ======================================================== */
-
-
-
-.ec-timeline .ec-time,
-.ec-timeline .ec-line {
-    width: 249px;
-}
-
-.ec-time-grid .ec-time,
-.ec-time-grid .ec-line {
-    height: 80px;
-}
-
-
-.ec-content>.ec-days>.ec-day>.ec-events,
-.ec-resource {
-    min-height: 8rem !important;
-}
 
 
 
@@ -679,6 +628,8 @@ select:focus>option:hover {
 
 
 
+
+
 /*****  Active Timeline (Gray) *****/
 .ec-event-gray {
     background-color: var(--timeline-gray-bg) !important;
@@ -692,33 +643,17 @@ select:focus>option:hover {
     background-color: var(--timeline-container-gray-bg) !important;
 }
 
-.ec-events {
-    padding: 5px 0 !important;
-}
-
-.ec-resource:last-child::after {
-    height: 0;
-    border: none;
-}
-
-.ec-resource:last-child .person-details {
-    width: 100%;
-    padding: 5px 0 5px 20px;
-}
-
-.ec-resource:last-child {
+.ec-sidebar .ec-content .ec-resource:last-child {
     position: relative;
 }
 
-.ec-resource:last-child .person-details::after {
-    content: ' ';
-    position: absolute;
-    width: 2490px;
-    bottom: 1px;
+.ec-days:last-child::after,
+.ec-resource:last-child::after {
+    content: "";
+    width: 100%;
+    margin-top: 3px;
     left: 0;
-    border-top: 3px solid var(--border-color);
-}
-
-.ec-days {
-    height: fit-content !important;
+    top: var(--bor-top, 8rem);
+    position: absolute;
+    border-bottom: 3px solid var(--border-color);
 }
