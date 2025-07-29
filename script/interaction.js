@@ -115,3 +115,35 @@ if (typeof $ !== "undefined" && typeof $.fn.daterangepicker !== "undefined") {
 } else {
   console.warn("jQuery or daterangepicker not loaded.");
 }
+
+$("#calPrev").on("click", function () {
+  const picker = $('input[name="datefilter"]').data("daterangepicker");
+  if (!picker) return;
+
+  const rangeDays = picker.endDate.diff(picker.startDate, "days");
+  const newStart = picker.startDate.clone().subtract(rangeDays + 1, "days");
+  const newEnd = picker.endDate.clone().subtract(rangeDays + 1, "days");
+
+  picker.setStartDate(newStart);
+  picker.setEndDate(newEnd);
+  $('input[name="datefilter"]').val(
+    `${newStart.format("DD/MM/YYYY")} - ${newEnd.format("DD/MM/YYYY")}`
+  );
+  $('input[name="datefilter"]').trigger("apply.daterangepicker", [picker]);
+});
+
+$("#calNext").on("click", function () {
+  const picker = $('input[name="datefilter"]').data("daterangepicker");
+  if (!picker) return;
+
+  const rangeDays = picker.endDate.diff(picker.startDate, "days");
+  const newStart = picker.startDate.clone().add(rangeDays + 1, "days");
+  const newEnd = picker.endDate.clone().add(rangeDays + 1, "days");
+
+  picker.setStartDate(newStart);
+  picker.setEndDate(newEnd);
+  $('input[name="datefilter"]').val(
+    `${newStart.format("DD/MM/YYYY")} - ${newEnd.format("DD/MM/YYYY")}`
+  );
+  $('input[name="datefilter"]').trigger("apply.daterangepicker", [picker]);
+});
