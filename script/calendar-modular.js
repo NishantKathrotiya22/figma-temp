@@ -20,60 +20,61 @@ var EventCalendar = window.EventCalendar;
  * @namespace CalendarApp
  * @description Main application namespace containing all modules
  */
-const CalendarApp = (function() {
-  'use strict';
+const CalendarApp = (function () {
+  "use strict";
 
   // ============================================================================
   // CONFIGURATION & CONSTANTS
   // ============================================================================
-  
+
   const CONFIG = {
     SELECTORS: {
-      CALENDAR_CONTAINER: '#ec',
-      SIDEBAR_TITLE: '.ec-sidebar-title',
+      CALENDAR_CONTAINER: "#ec",
+      SIDEBAR_TITLE: ".ec-sidebar-title",
       REGION_FILTER: '.custom-dropdown label[for="region-filter"]',
       WORKTYPE_FILTER: '.custom-dropdown label[for="work-type-filter"]',
-      RESET_BUTTON: '#reset',
-      TODAY_BUTTON: '#today-btn',
-      INITIAL_TAB: '#intial-tab-btn',
-      LEAVE_TAB: '#leave-tab-btn',
-      SEARCH_INPUT: '.search-input',
+      RESET_BUTTON: "#reset",
+      TODAY_BUTTON: "#today-btn",
+      INITIAL_TAB: "#intial-tab-btn",
+      LEAVE_TAB: "#leave-tab-btn",
+      SEARCH_INPUT: ".search-input",
       TOOLTIP_ELEMENTS: '[data-bs-toggle="tooltip"]',
-      DAY_CONTAINERS: '.ec-content > .ec-days:last-child > .ec-day > .ec-events',
-      PERSON_DETAILS: '.ec-resource:last-child .person-details',
-      EC_DAYS_LAST: '.ec-days:last-child',
-      EC_RESOURCE_LAST: '.ec-resource:last-child'
+      DAY_CONTAINERS:
+        ".ec-content > .ec-days:last-child > .ec-day > .ec-events",
+      PERSON_DETAILS: ".ec-resource:last-child .person-details",
+      EC_DAYS_LAST: ".ec-days:last-child",
+      EC_RESOURCE_LAST: ".ec-resource:last-child",
     },
     CALENDAR_OPTIONS: {
-      view: 'resourceTimelineDay',
-      initialView: 'resourceTimelineDay',
-      slotWidth: '249',
-      slotHeight: '80',
+      view: "resourceTimelineDay",
+      initialView: "resourceTimelineDay",
+      slotWidth: "249",
+      slotHeight: "80",
       headerToolbar: false,
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
       slotEventOverlap: true,
-      slotMinTime: '9:00:00',
-      slotMaxTime: '20:00:00'
+      slotMinTime: "9:00:00",
+      slotMaxTime: "20:00:00",
     },
     TOOLTIP_CONFIG: {
-      container: '.ec-body',
-      boundary: 'clippingParents',
-      fallbackPlacements: ['top', 'bottom', 'left', 'right']
+      container: ".ec-body",
+      boundary: "clippingParents",
+      fallbackPlacements: ["top", "bottom", "left", "right"],
     },
     DEBOUNCE_DELAY: 500,
     HEIGHT_OFFSET: 82,
     WEEK_COLORS: {
-      1: '#ff0026ff',
-      2: '#225f27ff'
-    }
+      1: "#ff0026ff",
+      2: "#225f27ff",
+    },
   };
 
   // ============================================================================
   // UTILITY MODULE
   // ============================================================================
-  
+
   const Utils = {
     /**
      * Get element by ID with error handling
@@ -145,7 +146,7 @@ const CalendarApp = (function() {
       const diffMins = Math.floor(diffMs / (1000 * 60));
       const hours = Math.floor(diffMins / 60);
       const minutes = diffMins % 60;
-      return `${hours}h ${minutes.toString().padStart(2, '0')}m`;
+      return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
     },
 
     /**
@@ -155,22 +156,22 @@ const CalendarApp = (function() {
      */
     escapeHtml(str) {
       return str
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/\n/g, '');
-    }
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\n/g, "");
+    },
   };
 
   // ============================================================================
   // DATA MANAGEMENT MODULE
   // ============================================================================
-  
+
   const DataManager = {
     /** @type {Array} Global event data */
     eventData: [],
-    
+
     /** @type {Array} Global resource data */
     resourceData: [],
 
@@ -263,13 +264,13 @@ const CalendarApp = (function() {
      */
     updateResources(resources) {
       this.resourceData = resources;
-    }
+    },
   };
 
   // ============================================================================
   // FILTER MODULE
   // ============================================================================
-  
+
   const FilterManager = {
     /** @type {Object} Current filter state */
     state: {
@@ -339,7 +340,10 @@ const CalendarApp = (function() {
           if (this.state.region && this.state.region !== "Select an option") {
             match = match && ev.extendedProps.region === this.state.region;
           }
-          if (this.state.worktype && this.state.worktype !== "Select an option") {
+          if (
+            this.state.worktype &&
+            this.state.worktype !== "Select an option"
+          ) {
             match = match && ev.extendedProps.eventType === this.state.worktype;
           }
           return match;
@@ -379,7 +383,7 @@ const CalendarApp = (function() {
         (this.state.region && this.state.region !== "Select an option") ||
         (this.state.worktype && this.state.worktype !== "Select an option") ||
         this.state.search;
-      
+
       if (anyFilter && filteredResources.length === 0) {
         return allResources;
       }
@@ -393,19 +397,21 @@ const CalendarApp = (function() {
     applyFilters() {
       const filtered = this.getFilteredAndSearchedResources();
       CalendarApp.Renderer.updateResources(filtered);
-    }
+    },
   };
 
   // ============================================================================
   // TOOLTIP MODULE
   // ============================================================================
-  
+
   const TooltipManager = {
     /**
      * Dispose all existing tooltips
      */
     disposeAll() {
-      const tooltipElements = Utils.querySelectorAll(CONFIG.SELECTORS.TOOLTIP_ELEMENTS);
+      const tooltipElements = Utils.querySelectorAll(
+        CONFIG.SELECTORS.TOOLTIP_ELEMENTS
+      );
       tooltipElements.forEach((el) => {
         const instance = bootstrap.Tooltip.getInstance(el);
         if (instance) {
@@ -419,8 +425,10 @@ const CalendarApp = (function() {
      */
     initializeAll() {
       this.disposeAll();
-      const elements = Utils.querySelectorAll(CONFIG.SELECTORS.TOOLTIP_ELEMENTS);
-      
+      const elements = Utils.querySelectorAll(
+        CONFIG.SELECTORS.TOOLTIP_ELEMENTS
+      );
+
       elements.forEach((el) => {
         const existing = bootstrap.Tooltip.getInstance(el);
         if (existing) {
@@ -430,7 +438,7 @@ const CalendarApp = (function() {
         try {
           new bootstrap.Tooltip(el, CONFIG.TOOLTIP_CONFIG);
         } catch (error) {
-          console.error('Failed to initialize tooltip:', error);
+          console.error("Failed to initialize tooltip:", error);
         }
       });
     },
@@ -455,22 +463,26 @@ const CalendarApp = (function() {
           </div>
         </div>
       `;
-    }
+    },
   };
 
   // ============================================================================
   // HEIGHT SYNC MODULE
   // ============================================================================
-  
+
   const HeightSyncManager = {
     /**
      * Sync dynamic height for calendar elements
      */
     syncDynamicHeight() {
-      const dayContainers = Utils.querySelectorAll(CONFIG.SELECTORS.DAY_CONTAINERS);
+      const dayContainers = Utils.querySelectorAll(
+        CONFIG.SELECTORS.DAY_CONTAINERS
+      );
       const target = Utils.querySelector(CONFIG.SELECTORS.PERSON_DETAILS);
       const ecDaysLast = Utils.querySelector(CONFIG.SELECTORS.EC_DAYS_LAST);
-      const ecResourceLast = Utils.querySelector(CONFIG.SELECTORS.EC_RESOURCE_LAST);
+      const ecResourceLast = Utils.querySelector(
+        CONFIG.SELECTORS.EC_RESOURCE_LAST
+      );
 
       if (!dayContainers.length || !target || !ecDaysLast || !ecResourceLast) {
         console.warn("HeightSync: Required elements not found.");
@@ -490,23 +502,23 @@ const CalendarApp = (function() {
       });
 
       const finalTop = maxOffsetTop + CONFIG.HEIGHT_OFFSET;
-      
+
       try {
         target.style.height = `${finalTop}px`;
         ecDaysLast.style.setProperty("--bor-top", `${finalTop}px`);
         ecResourceLast.style.setProperty("--bor-top", `${finalTop}px`);
-        
+
         console.log("Applied dynamic --bor-top:", finalTop);
       } catch (error) {
         console.error("Failed to apply dynamic height:", error);
       }
-    }
+    },
   };
 
   // ============================================================================
   // RENDERER MODULE
   // ============================================================================
-  
+
   const Renderer = {
     /** @type {Object} Calendar instance */
     calendar: null,
@@ -529,7 +541,8 @@ const CalendarApp = (function() {
 
       // Convert to Excel date number (days since 1900-01-01)
       const excelEpoch = new Date(1900, 0, 1);
-      const daysSinceEpoch = Math.floor((d - excelEpoch) / (1000 * 60 * 60 * 24)) + 1;
+      const daysSinceEpoch =
+        Math.floor((d - excelEpoch) / (1000 * 60 * 60 * 24)) + 1;
 
       // WEEKDAY function with mode 2 (Monday = 1, Sunday = 7)
       const weekday2 = ((d.getDay() + 6) % 7) + 1;
@@ -556,7 +569,9 @@ const CalendarApp = (function() {
       const durationStr = Utils.formatDuration(start.getTime(), end.getTime());
       arg.event.extendedProps.duration = durationStr;
 
-      const tooltipHtml = Utils.escapeHtml(TooltipManager.renderTooltipContent(arg));
+      const tooltipHtml = Utils.escapeHtml(
+        TooltipManager.renderTooltipContent(arg)
+      );
 
       return {
         html: `
@@ -725,22 +740,25 @@ const CalendarApp = (function() {
       } catch (error) {
         console.error("Failed to create calendar:", error);
       }
-    }
+    },
   };
 
   // ============================================================================
   // EVENT HANDLERS MODULE
   // ============================================================================
-  
+
   const EventHandlers = {
     /**
      * Setup filter dropdowns and reset functionality
      */
     setupFilterDropdownsAndReset() {
       // Region filter
-      const regionDropdown = Utils.querySelector(CONFIG.SELECTORS.REGION_FILTER)?.parentElement;
+      const regionDropdown = Utils.querySelector(
+        CONFIG.SELECTORS.REGION_FILTER
+      )?.parentElement;
       if (regionDropdown) {
-        const regionOptions = regionDropdown.querySelectorAll(".dropdown-option");
+        const regionOptions =
+          regionDropdown.querySelectorAll(".dropdown-option");
         regionOptions.forEach((option) => {
           option.addEventListener("click", function () {
             FilterManager.setRegion(option.textContent.trim());
@@ -749,9 +767,12 @@ const CalendarApp = (function() {
       }
 
       // Worktype filter
-      const worktypeDropdown = Utils.querySelector(CONFIG.SELECTORS.WORKTYPE_FILTER)?.parentElement;
+      const worktypeDropdown = Utils.querySelector(
+        CONFIG.SELECTORS.WORKTYPE_FILTER
+      )?.parentElement;
       if (worktypeDropdown) {
-        const worktypeOptions = worktypeDropdown.querySelectorAll(".dropdown-option");
+        const worktypeOptions =
+          worktypeDropdown.querySelectorAll(".dropdown-option");
         worktypeOptions.forEach((option) => {
           option.addEventListener("click", function () {
             FilterManager.setWorktype(option.textContent.trim());
@@ -764,7 +785,9 @@ const CalendarApp = (function() {
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
           FilterManager.reset();
-          const searchInput = Utils.querySelector(CONFIG.SELECTORS.SEARCH_INPUT);
+          const searchInput = Utils.querySelector(
+            CONFIG.SELECTORS.SEARCH_INPUT
+          );
           if (searchInput) {
             searchInput.value = "";
           }
@@ -808,7 +831,10 @@ const CalendarApp = (function() {
           }
 
           // Sync daterangepicker to today
-          if (typeof $ !== "undefined" && typeof $.fn.daterangepicker !== "undefined") {
+          if (
+            typeof $ !== "undefined" &&
+            typeof $.fn.daterangepicker !== "undefined"
+          ) {
             const $dateInput = $('input[name="datefilter"]');
             if ($dateInput.length && $dateInput.data("daterangepicker")) {
               const today = moment();
@@ -821,13 +847,13 @@ const CalendarApp = (function() {
           }
         });
       }
-    }
+    },
   };
 
   // ============================================================================
   // INITIALIZATION MODULE
   // ============================================================================
-  
+
   const Initializer = {
     /**
      * Initialize the entire calendar application
@@ -835,29 +861,29 @@ const CalendarApp = (function() {
     init() {
       try {
         console.log("Initializing Calendar Application...");
-        
+
         // Create calendar first
         Renderer.createCalendar();
-        
+
         // Set initial data
         DataManager.setInitialData();
-        
+
         // Setup event handlers
         EventHandlers.setupFilterDropdownsAndReset();
         EventHandlers.setupTabSwitching();
         EventHandlers.setupTodayButton();
-        
+
         console.log("Calendar Application initialized successfully");
       } catch (error) {
         console.error("Failed to initialize Calendar Application:", error);
       }
-    }
+    },
   };
 
   // ============================================================================
   // PUBLIC API
   // ============================================================================
-  
+
   return {
     // Core modules
     DataManager,
@@ -868,13 +894,13 @@ const CalendarApp = (function() {
     EventHandlers,
     Initializer,
     Utils,
-    
+
     // Public methods
     init: Initializer.init.bind(Initializer),
     getCalendar: () => Renderer.calendar,
     getData: () => ({
       events: DataManager.getEvents(),
-      resources: DataManager.getResources()
+      resources: DataManager.getResources(),
     }),
     updateData: (events, resources) => {
       if (events) DataManager.updateEvents(events);
@@ -884,7 +910,7 @@ const CalendarApp = (function() {
     applyFilters: FilterManager.applyFilters.bind(FilterManager),
     resetFilters: FilterManager.reset.bind(FilterManager),
     syncHeight: HeightSyncManager.syncDynamicHeight.bind(HeightSyncManager),
-    reinitializeTooltips: TooltipManager.initializeAll.bind(TooltipManager)
+    reinitializeTooltips: TooltipManager.initializeAll.bind(TooltipManager),
   };
 })();
 
@@ -898,6 +924,6 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // Export for module systems (if needed)
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = CalendarApp;
 }
