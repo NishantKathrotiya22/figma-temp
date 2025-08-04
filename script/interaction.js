@@ -147,3 +147,29 @@ $("#calNext").on("click", function () {
   );
   $('input[name="datefilter"]').trigger("apply.daterangepicker", [picker]);
 });
+
+// Today BTN
+var todayBtn = document.getElementById("today-btn");
+if (todayBtn) {
+  todayBtn.addEventListener("click", function () {
+    if (window.ecCalendar) {
+      window.ecCalendar.setOption("date", new Date());
+      window.ecCalendar.setOption("duration", { days: 1 });
+    }
+    // Sync daterangepicker to today
+    if (
+      typeof $ !== "undefined" &&
+      typeof $.fn.daterangepicker !== "undefined"
+    ) {
+      var $dateInput = $('input[name="datefilter"]');
+      if ($dateInput.length && $dateInput.data("daterangepicker")) {
+        var today = moment();
+        $dateInput.data("daterangepicker").setStartDate(today);
+        $dateInput.data("daterangepicker").setEndDate(today);
+        $dateInput.val(
+          today.format("DD/MM/YYYY") + " - " + today.format("DD/MM/YYYY")
+        );
+      }
+    }
+  });
+}

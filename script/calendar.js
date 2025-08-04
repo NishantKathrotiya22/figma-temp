@@ -21,16 +21,12 @@ let filterState = {
 let eventData = [];
 let resourceData = [];
 
-function getById(id) {
-  return document.getElementById(id);
-}
-
 function setIntialData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-08-01T11:45:00+05:30"),
-      end: new Date("2025-08-02T13:00:00+05:30"),
+      start: new Date("2025-08-04T11:45:00+05:30"),
+      end: new Date("2025-08-05T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -50,8 +46,8 @@ function setIntialData() {
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-01T11:55:00+05:30"),
-      end: new Date("2025-08-01T13:00:00+05:30"),
+      start: new Date("2025-08-04T11:55:00+05:30"),
+      end: new Date("2025-08-04T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -71,8 +67,8 @@ function setIntialData() {
     },
     {
       resourceId: "2",
-      start: new Date("2025-08-01T12:00:00+05:30"),
-      end: new Date("2025-08-01T13:00:00+05:30"),
+      start: new Date("2025-08-04T12:00:00+05:30"),
+      end: new Date("2025-08-04T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -89,8 +85,8 @@ function setIntialData() {
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-01T09:20:00+05:30"),
-      end: new Date("2025-08-01T11:00:00+05:30"),
+      start: new Date("2025-08-04T09:20:00+05:30"),
+      end: new Date("2025-08-04T11:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -107,8 +103,8 @@ function setIntialData() {
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-01T10:35:00+05:30"),
-      end: new Date("2025-08-01T15:00:00+05:30"),
+      start: new Date("2025-08-04T10:35:00+05:30"),
+      end: new Date("2025-08-04T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -125,8 +121,8 @@ function setIntialData() {
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-01T13:45:00+05:30"),
-      end: new Date("2025-08-01T15:00:00+05:30"),
+      start: new Date("2025-08-04T13:45:00+05:30"),
+      end: new Date("2025-08-04T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -143,8 +139,8 @@ function setIntialData() {
     },
     {
       resourceId: "4",
-      start: new Date("2025-08-01T01:45:00+05:30"),
-      end: new Date("2025-08-01T12:45:00+05:30"),
+      start: new Date("2025-08-04T01:45:00+05:30"),
+      end: new Date("2025-08-04T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -161,8 +157,8 @@ function setIntialData() {
     },
     {
       resourceId: "5",
-      start: new Date("2025-08-01T10:00:00+05:30"),
-      end: new Date("2025-08-01T11:00:00+05:30"),
+      start: new Date("2025-08-04T10:00:00+05:30"),
+      end: new Date("2025-08-04T11:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -179,8 +175,8 @@ function setIntialData() {
     },
     {
       resourceId: "6",
-      start: new Date("2025-08-01T08:00:00+05:30"),
-      end: new Date("2025-08-01T09:30:00+05:30"),
+      start: new Date("2025-08-04T08:00:00+05:30"),
+      end: new Date("2025-08-04T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -197,8 +193,8 @@ function setIntialData() {
     },
     {
       resourceId: "7",
-      start: new Date("2025-08-01T10:00:00+05:30"),
-      end: new Date("2025-08-01T11:15:00+05:30"),
+      start: new Date("2025-08-04T10:00:00+05:30"),
+      end: new Date("2025-08-04T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -215,8 +211,8 @@ function setIntialData() {
     },
     {
       resourceId: "8",
-      start: new Date("2025-08-01T11:30:00+05:30"),
-      end: new Date("2025-08-01T13:00:00+05:30"),
+      start: new Date("2025-08-04T11:30:00+05:30"),
+      end: new Date("2025-08-04T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -233,8 +229,8 @@ function setIntialData() {
     },
     {
       resourceId: "9",
-      start: new Date("2025-08-01T13:15:00+05:30"),
-      end: new Date("2025-08-01T14:45:00+05:30"),
+      start: new Date("2025-08-04T13:15:00+05:30"),
+      end: new Date("2025-08-04T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -251,8 +247,8 @@ function setIntialData() {
     },
     {
       resourceId: "10",
-      start: new Date("2025-08-01T09:00:00+05:30"),
-      end: new Date("2025-08-01T10:30:00+05:30"),
+      start: new Date("2025-08-04T09:00:00+05:30"),
+      end: new Date("2025-08-04T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -269,8 +265,8 @@ function setIntialData() {
     },
     {
       resourceId: "11",
-      start: new Date("2025-08-01T14:00:00+05:30"),
-      end: new Date("2025-08-01T15:00:00+05:30"),
+      start: new Date("2025-08-04T14:00:00+05:30"),
+      end: new Date("2025-08-04T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -287,8 +283,8 @@ function setIntialData() {
     },
     {
       resourceId: "12",
-      start: new Date("2025-08-01T10:45:00+05:30"),
-      end: new Date("2025-08-01T12:00:00+05:30"),
+      start: new Date("2025-08-04T10:45:00+05:30"),
+      end: new Date("2025-08-04T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -305,8 +301,8 @@ function setIntialData() {
     },
     {
       resourceId: "13",
-      start: new Date("2025-08-01T08:30:00+05:30"),
-      end: new Date("2025-08-01T09:30:00+05:30"),
+      start: new Date("2025-08-04T08:30:00+05:30"),
+      end: new Date("2025-08-04T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -323,8 +319,8 @@ function setIntialData() {
     },
     {
       resourceId: "14",
-      start: new Date("2025-08-01T15:00:00+05:30"),
-      end: new Date("2025-08-01T16:30:00+05:30"),
+      start: new Date("2025-08-04T15:00:00+05:30"),
+      end: new Date("2025-08-04T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -341,8 +337,8 @@ function setIntialData() {
     },
     {
       resourceId: "15",
-      start: new Date("2025-08-01T13:00:00+05:30"),
-      end: new Date("2025-08-01T14:00:00+05:30"),
+      start: new Date("2025-08-04T13:00:00+05:30"),
+      end: new Date("2025-08-04T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -359,8 +355,8 @@ function setIntialData() {
     },
     {
       resourceId: "16",
-      start: new Date("2025-08-01T11:15:00+05:30"),
-      end: new Date("2025-08-01T12:45:00+05:30"),
+      start: new Date("2025-08-04T11:15:00+05:30"),
+      end: new Date("2025-08-04T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -377,8 +373,8 @@ function setIntialData() {
     },
     {
       resourceId: "17",
-      start: new Date("2025-08-01T08:45:00+05:30"),
-      end: new Date("2025-08-01T10:00:00+05:30"),
+      start: new Date("2025-08-04T08:45:00+05:30"),
+      end: new Date("2025-08-04T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -395,8 +391,8 @@ function setIntialData() {
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-01T14:15:00+05:30"),
-      end: new Date("2025-08-01T15:30:00+05:30"),
+      start: new Date("2025-08-04T14:15:00+05:30"),
+      end: new Date("2025-08-04T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -566,8 +562,8 @@ function setLeaveData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-08-01T10:45:00+05:30"),
-      end: new Date("2025-08-01T12:00:00+05:30"),
+      start: new Date("2025-08-04T10:45:00+05:30"),
+      end: new Date("2025-08-04T12:00:00+05:30"),
       id: "123",
       type: "Full",
       editable: false,
@@ -586,8 +582,8 @@ function setLeaveData() {
     },
     {
       resourceId: "2",
-      start: new Date("2025-08-01T10:00:00+05:30"),
-      end: new Date("2025-08-01T10:00:00+05:30"),
+      start: new Date("2025-08-04T10:00:00+05:30"),
+      end: new Date("2025-08-04T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -604,8 +600,8 @@ function setLeaveData() {
     },
     {
       resourceId: "3",
-      start: new Date("2025-08-01T13:30:00+05:30"),
-      end: new Date("2025-08-01T15:00:00+05:30"),
+      start: new Date("2025-08-04T13:30:00+05:30"),
+      end: new Date("2025-08-04T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -622,8 +618,8 @@ function setLeaveData() {
     },
     {
       resourceId: "4",
-      start: new Date("2025-08-01T09:45:00+05:30"),
-      end: new Date("2025-08-01T10:45:00+05:30"),
+      start: new Date("2025-08-04T09:45:00+05:30"),
+      end: new Date("2025-08-04T10:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -640,8 +636,8 @@ function setLeaveData() {
     },
     {
       resourceId: "5",
-      start: new Date("2025-08-01T12:00:00+05:30"),
-      end: new Date("2025-08-01T13:00:00+05:30"),
+      start: new Date("2025-08-04T12:00:00+05:30"),
+      end: new Date("2025-08-04T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -658,8 +654,8 @@ function setLeaveData() {
     },
     {
       resourceId: "6",
-      start: new Date("2025-08-01T08:00:00+05:30"),
-      end: new Date("2025-08-01T09:30:00+05:30"),
+      start: new Date("2025-08-04T08:00:00+05:30"),
+      end: new Date("2025-08-04T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -676,8 +672,8 @@ function setLeaveData() {
     },
     {
       resourceId: "7",
-      start: new Date("2025-08-01T10:00:00+05:30"),
-      end: new Date("2025-08-01T11:15:00+05:30"),
+      start: new Date("2025-08-04T10:00:00+05:30"),
+      end: new Date("2025-08-04T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -694,8 +690,8 @@ function setLeaveData() {
     },
     {
       resourceId: "8",
-      start: new Date("2025-08-01T11:30:00+05:30"),
-      end: new Date("2025-08-01T13:00:00+05:30"),
+      start: new Date("2025-08-04T11:30:00+05:30"),
+      end: new Date("2025-08-04T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -712,8 +708,8 @@ function setLeaveData() {
     },
     {
       resourceId: "9",
-      start: new Date("2025-08-01T13:15:00+05:30"),
-      end: new Date("2025-08-01T14:45:00+05:30"),
+      start: new Date("2025-08-04T13:15:00+05:30"),
+      end: new Date("2025-08-04T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -730,8 +726,8 @@ function setLeaveData() {
     },
     {
       resourceId: "10",
-      start: new Date("2025-08-01T09:00:00+05:30"),
-      end: new Date("2025-08-01T10:30:00+05:30"),
+      start: new Date("2025-08-04T09:00:00+05:30"),
+      end: new Date("2025-08-04T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -748,8 +744,8 @@ function setLeaveData() {
     },
     {
       resourceId: "11",
-      start: new Date("2025-08-01T14:00:00+05:30"),
-      end: new Date("2025-08-01T15:00:00+05:30"),
+      start: new Date("2025-08-04T14:00:00+05:30"),
+      end: new Date("2025-08-04T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -766,8 +762,8 @@ function setLeaveData() {
     },
     {
       resourceId: "12",
-      start: new Date("2025-08-01T10:45:00+05:30"),
-      end: new Date("2025-08-01T12:00:00+05:30"),
+      start: new Date("2025-08-04T10:45:00+05:30"),
+      end: new Date("2025-08-04T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -784,8 +780,8 @@ function setLeaveData() {
     },
     {
       resourceId: "13",
-      start: new Date("2025-08-01T08:30:00+05:30"),
-      end: new Date("2025-08-01T09:30:00+05:30"),
+      start: new Date("2025-08-04T08:30:00+05:30"),
+      end: new Date("2025-08-04T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -802,8 +798,8 @@ function setLeaveData() {
     },
     {
       resourceId: "14",
-      start: new Date("2025-08-01T15:00:00+05:30"),
-      end: new Date("2025-08-01T16:30:00+05:30"),
+      start: new Date("2025-08-04T15:00:00+05:30"),
+      end: new Date("2025-08-04T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -820,8 +816,8 @@ function setLeaveData() {
     },
     {
       resourceId: "15",
-      start: new Date("2025-08-01T13:00:00+05:30"),
-      end: new Date("2025-08-01T14:00:00+05:30"),
+      start: new Date("2025-08-04T13:00:00+05:30"),
+      end: new Date("2025-08-04T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -838,8 +834,8 @@ function setLeaveData() {
     },
     {
       resourceId: "16",
-      start: new Date("2025-08-01T11:15:00+05:30"),
-      end: new Date("2025-08-01T12:45:00+05:30"),
+      start: new Date("2025-08-04T11:15:00+05:30"),
+      end: new Date("2025-08-04T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -856,8 +852,8 @@ function setLeaveData() {
     },
     {
       resourceId: "17",
-      start: new Date("2025-08-01T08:45:00+05:30"),
-      end: new Date("2025-08-01T10:00:00+05:30"),
+      start: new Date("2025-08-04T08:45:00+05:30"),
+      end: new Date("2025-08-04T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -874,8 +870,8 @@ function setLeaveData() {
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-01T14:15:00+05:30"),
-      end: new Date("2025-08-01T15:30:00+05:30"),
+      start: new Date("2025-08-04T14:15:00+05:30"),
+      end: new Date("2025-08-04T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -993,6 +989,9 @@ function syncDynamicHeight() {
   const target = document.querySelector(
     ".ec-resource:last-child .person-details"
   );
+  const ecEvent = document.querySelector(
+    ".ec-content  .ec-days:last-child  .ec-day"
+  );
 
   const ecDaysLast = document.querySelector(".ec-days:last-child");
   const ecResourceLast = document.querySelector(".ec-resource:last-child");
@@ -1011,35 +1010,38 @@ function syncDynamicHeight() {
       });
     });
 
-    const finalTop = maxOffsetTop + 82;
+    const finalTop = maxOffsetTop == 0 ? 80 : maxOffsetTop + 85;
     target.style.height = finalTop + "px";
     ecDaysLast.style.setProperty("--bor-top", `${finalTop}px`);
     ecResourceLast.style.setProperty("--bor-top", `${finalTop}px`);
 
     console.log("Applied dynamic --bor-top:", finalTop);
+
+    ecEvent.style.height = `${finalTop}px`;
   } else {
     console.warn("syncDynamicHeight: Required elements not found.");
   }
 }
 
-function reRenderEvents() {
-  // Cleanup Old Tooltips
-  disposeAllTooltips();
+function disposeAllTooltips() {
+  const tooltipElements = document.querySelectorAll(
+    '[data-bs-toggle="tooltip"]'
+  );
+  tooltipElements.forEach((el) => {
+    const instance = bootstrap.Tooltip.getInstance(el);
+    if (instance) instance.dispose();
+  });
+}
 
+function reRenderEvents() {
   //Rerender new Events
   window.ecCalendar.setOption("events", eventData);
   window.ecCalendar.setOption("resources", resourceData);
-
-  //Intialze Tooltip Again
-  setTimeout(() => {
-    initializeAllTooltips();
-    syncDynamicHeight();
-  }, 0);
 }
 
 function chnageActivetab() {
-  const initalTabBtn = getById("intial-tab-btn");
-  const leaveTabBtn = getById("leave-tab-btn");
+  const initalTabBtn = document.getElementById("intial-tab-btn");
+  const leaveTabBtn = document.getElementById("leave-tab-btn");
 
   initalTabBtn.addEventListener("click", (el) => {
     //Chnage Ui
@@ -1057,19 +1059,6 @@ function chnageActivetab() {
     setLeaveData();
   });
 }
-
-// function parseDate(date) {
-//   const weekdayFormatter = new Intl.DateTimeFormat("en-US", {
-//     weekday: "long",
-//   });
-//   const weekday = weekdayFormatter.format(date);
-//   const day = String(date.getDate()).padStart(2, "0");
-//   const month = String(date.getMonth() + 1).padStart(2, "0");
-//   const year = date.getFullYear();
-//   console.log(date);
-
-//   return `${weekday} - ${day}-${month}-${year}`;
-// }
 
 function parseDate(date) {
   const weekdayFormatter = new Intl.DateTimeFormat("en-US", {
@@ -1106,16 +1095,6 @@ function parseDate(date) {
   return {
     html: `<div style="color: ${color}; padding: 4px 8px; border-radius: 4px;">${label}</div>`,
   };
-}
-
-function disposeAllTooltips() {
-  const tooltipElements = document.querySelectorAll(
-    '[data-bs-toggle="tooltip"]'
-  );
-  tooltipElements.forEach((el) => {
-    const instance = bootstrap.Tooltip.getInstance(el);
-    if (instance) instance.dispose();
-  });
 }
 
 function renderTooltipContent(arg) {
@@ -1205,6 +1184,15 @@ function renderResources(info) {
   };
 }
 
+function getResources() {
+  return typeof resourceData !== "undefined" ? resourceData : [];
+}
+
+function getEvents() {
+  // Always return the current global event data
+  return typeof eventData !== "undefined" ? eventData : [];
+}
+
 // --- FILTER/SEARCH CORE LOGIC ---
 function getFilteredEventIds() {
   const events = getEvents();
@@ -1223,8 +1211,9 @@ function getFilteredEventIds() {
 }
 
 function getFilteredAndSearchedResources() {
-  const allResources = getResources();
+  let allResources = getResources();
   const filteredEventIds = getFilteredEventIds();
+
   let filteredResources = allResources.filter((res) =>
     filteredEventIds.includes(String(res.id))
   );
@@ -1282,7 +1271,9 @@ function setupFilterDropdownsAndReset() {
   const regionDropdown = document.querySelector(
     '.custom-dropdown label[for="region-filter"]'
   ).parentElement;
+
   const regionOptions = regionDropdown.querySelectorAll(".dropdown-option");
+
   regionOptions.forEach((option) => {
     option.addEventListener("click", function () {
       filterState.region = option.textContent.trim();
@@ -1324,15 +1315,6 @@ function debounce(func, delay) {
       func.apply(this, args);
     }, delay);
   };
-}
-
-function getResources() {
-  return typeof resourceData !== "undefined" ? resourceData : [];
-}
-
-function getEvents() {
-  // Always return the current global event data
-  return typeof eventData !== "undefined" ? eventData : [];
 }
 
 function filterResources(query) {
@@ -1429,16 +1411,16 @@ function renderSearch() {
     filterState.sortAsc = !filterState.sortAsc;
     applyAllFilters();
   });
-
-  syncDynamicHeight();
 }
 
 function createCalendar() {
-  const ecEl = getById("ec");
+  const ecEl = document.getElementById("ec");
+
   if (!ecEl || typeof EventCalendar === "undefined") {
     console.error("Calendar container or EventCalendar library not found.");
     return;
   }
+
   const ec = EventCalendar.create(ecEl, {
     view: "resourceTimelineDay",
     initialView: "resourceTimelineDay",
@@ -1448,8 +1430,6 @@ function createCalendar() {
     editable: false,
     durationEditable: false,
     eventStartEditable: false,
-    events: getEvents(),
-    resources: getResources(),
     slotEventOverlap: true,
 
     dayHeaderFormat: parseDate,
@@ -1460,45 +1440,16 @@ function createCalendar() {
       initializeAllTooltips();
       syncDynamicHeight();
     },
-    // titleFormat: (start, end) => parseDate(start),
-    // filterResourcesWithEvents: true, // Remove Comment in both to hide resources without Event and visaverca
-    // filterEventsWithResources: true,
 
     slotMinTime: "9:00:00",
     slotMaxTime: "20:00:00",
   });
   window.ecCalendar = ec;
 }
-
 // --- INIT ---
 window.addEventListener("DOMContentLoaded", function () {
   createCalendar();
   setIntialData();
   setupFilterDropdownsAndReset();
   chnageActivetab();
-
-  // Today BTN
-  var todayBtn = getById("today-btn");
-  if (todayBtn) {
-    todayBtn.addEventListener("click", function () {
-      if (window.ecCalendar) {
-        window.ecCalendar.setOption("date", new Date());
-      }
-      // Sync daterangepicker to today
-      if (
-        typeof $ !== "undefined" &&
-        typeof $.fn.daterangepicker !== "undefined"
-      ) {
-        var $dateInput = $('input[name="datefilter"]');
-        if ($dateInput.length && $dateInput.data("daterangepicker")) {
-          var today = moment();
-          $dateInput.data("daterangepicker").setStartDate(today);
-          $dateInput.data("daterangepicker").setEndDate(today);
-          $dateInput.val(
-            today.format("DD/MM/YYYY") + " - " + today.format("DD/MM/YYYY")
-          );
-        }
-      }
-    });
-  }
 });

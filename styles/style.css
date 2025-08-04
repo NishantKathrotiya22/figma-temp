@@ -651,7 +651,6 @@ select:focus>option:hover {
 .ec-resource:last-child::after {
     content: "";
     width: 100%;
-    margin-top: 3px;
     left: 0;
     top: var(--bor-top, 8rem);
     position: absolute;
