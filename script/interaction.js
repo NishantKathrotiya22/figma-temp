@@ -173,3 +173,63 @@ if (todayBtn) {
     }
   });
 }
+
+function formatTo24HourTime(dateObj) {
+  const pad = (n) => String(n).padStart(2, "0");
+  const hours = pad(dateObj.getHours());
+  const minutes = pad(dateObj.getMinutes());
+  const seconds = pad(dateObj.getSeconds());
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+// starttime
+
+$(".starttime").timepicker({
+  timeFormat: "h:mm p",
+  interval: 30,
+  startTime: "08:00",
+  maxTime: "4:00pm",
+  defaultTime: "08",
+  dynamic: false,
+  dropdown: true,
+  scrollbar: true,
+
+  change: function (time) {
+    const fullTime = formatTo24HourTime(time);
+
+    if (window?.ecCalendar) {
+      window.ecCalendar.setOption("slotMinTime", fullTime);
+    }
+  },
+});
+
+$(".endtime").timepicker({
+  timeFormat: "h:mm p",
+  interval: 30,
+  startTime: "09:00",
+  maxTime: "4:00pm",
+  defaultTime: "16",
+  dynamic: false,
+  dropdown: true,
+  scrollbar: true,
+
+  change: function (time) {
+    const fullTime = formatTo24HourTime(time);
+    if (window?.ecCalendar) {
+      window.ecCalendar.setOption("slotMaxTime", fullTime);
+    }
+  },
+});
+
+$(".inputHolder img").on("click", function (e) {
+  e.preventDefault();
+  e.stopPropagation(); // Prevent event bubbling
+
+  // Find the input (either .starttime or .endtime) in the same container
+  const $input = $(this).siblings("input.starttime, input.endtime");
+
+  // Delay focus to avoid immediate close
+  setTimeout(() => {
+    $input.focus();
+  }, 10);
+});
