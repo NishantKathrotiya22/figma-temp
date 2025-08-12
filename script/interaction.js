@@ -102,12 +102,18 @@ if (typeof $ !== "undefined" && typeof $.fn.daterangepicker !== "undefined") {
             picker.endDate.format("DD/MM/YYYY")
         );
 
+        // if (window.ecCalendar) {
+        //   var start = picker.startDate.clone().startOf("day");
+        //   var end = picker.endDate.clone().startOf("day");
+        //   var days = end.diff(start, "days") + 1; // inclusive
+        //   window.ecCalendar.setOption("date", start.toDate());
+        //   window.ecCalendar.setOption("duration", { days: days });
+        // }
+
         if (window.ecCalendar) {
           var start = picker.startDate.clone().startOf("day");
-          var end = picker.endDate.clone().startOf("day");
-          var days = end.diff(start, "days") + 1; // inclusive
           window.ecCalendar.setOption("date", start.toDate());
-          window.ecCalendar.setOption("duration", { days: days });
+          window.ecCalendar.setOption("duration", { days: 10 });
         }
       });
     }
@@ -154,7 +160,7 @@ if (todayBtn) {
   todayBtn.addEventListener("click", function () {
     if (window.ecCalendar) {
       window.ecCalendar.setOption("date", new Date());
-      window.ecCalendar.setOption("duration", { days: 1 });
+      window.ecCalendar.setOption("duration", { days: 8 });
     }
     // Sync daterangepicker to today
     if (
@@ -192,13 +198,16 @@ $(".starttime").timepicker({
   defaultTime: "08",
   dynamic: false,
   dropdown: true,
-  scrollbar: true,
+  scrollbar: false,
 
   change: function (time) {
     const fullTime = formatTo24HourTime(time);
 
     if (window?.ecCalendar) {
       window.ecCalendar.setOption("slotMinTime", fullTime);
+      setTimeout(() => {
+        window.refreshCalendarUI();
+      }, 0);
     }
   },
 });
@@ -221,7 +230,7 @@ $(".endtime").timepicker({
   },
 });
 
-$(".inputHolder img").on("click", function (e) {
+$(".time-conatainer img").on("click", function (e) {
   e.preventDefault();
   e.stopPropagation(); // Prevent event bubbling
 

@@ -1049,6 +1049,7 @@ function chnageActivetab() {
     leaveTabBtn.children[0].classList.remove("active-tab-btn");
 
     setIntialData();
+    resetFilters();
   });
 
   leaveTabBtn.addEventListener("click", (el) => {
@@ -1057,6 +1058,7 @@ function chnageActivetab() {
     initalTabBtn.children[0].classList.remove("active-tab-btn");
 
     setLeaveData();
+    resetFilters();
   });
 }
 
@@ -1260,8 +1262,7 @@ function upadateResources(data) {
     window.ecCalendar.setOption("resources", data);
 
     setTimeout(() => {
-      initializeAllTooltips();
-      syncDynamicHeight();
+      refreshCalendarUI();
     }, 0);
   }
 }
@@ -1369,29 +1370,30 @@ function setupFilterDropdownsAndReset() {
   // Reset button logic
   const resetBtn = document.getElementById("reset");
   if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
-      filterState.region = [];
-      filterState.worktype = [];
-      filterState.search = "";
-      filterState.sortAsc = true;
-
-      // Uncheck all checkboxes
-      document
-        .querySelectorAll(".custom-dropdown input[type='checkbox']")
-        .forEach((cb) => (cb.checked = false));
-
-      // Reset displayed text
-      document
-        .querySelectorAll(".value-display")
-        .forEach((vd) => (vd.textContent = "Select an option"));
-
-      // Reset search input
-      const searchInput = document.querySelector(".search-input");
-      if (searchInput) searchInput.value = "";
-
-      applyAllFilters();
-    });
+    resetBtn.addEventListener("click", resetFilters);
   }
+}
+
+function resetFilters() {
+  filterState.region = [];
+  filterState.worktype = [];
+  filterState.search = "";
+  filterState.sortAsc = true;
+
+  // Uncheck all checkboxes
+  document
+    .querySelectorAll(".custom-dropdown input[type='checkbox']")
+    .forEach((cb) => (cb.checked = false));
+
+  // Reset displayed text
+  document
+    .querySelectorAll(".value-display")
+    .forEach((vd) => (vd.textContent = "Select an option"));
+
+  // Reset search input
+  const searchInput = document.querySelector(".search-input");
+  if (searchInput) searchInput.value = "";
+  applyAllFilters();
 }
 
 function debounce(func, delay) {
@@ -1446,6 +1448,7 @@ function initializeAllTooltips() {
       boundary: "clippingParents",
       fallbackPlacements: ["top", "bottom", "left", "right"],
     });
+    console.log("Updated ToolTips");
   });
 }
 
@@ -1500,6 +1503,86 @@ function renderSearch() {
   });
 }
 
+function applyObserver() {
+  const scrollContainer = document.querySelector(".ec-header"); // horizontal scroll container
+  const dayHeads = document.querySelectorAll(".ec-day-head");
+
+  function updatePosition() {
+    const containerRect = scrollContainer.getBoundingClientRect();
+
+    dayHeads.forEach((head) => {
+      const labelDiv = head.querySelector("time > div");
+      if (!labelDiv) return;
+
+      const headRect = head.getBoundingClientRect();
+
+      if (
+        headRect.right > containerRect.left &&
+        headRect.left < containerRect.right
+      ) {
+        // Element is at least partially visible
+        const offset = Math.max(0, containerRect.left - headRect.left);
+        labelDiv.style.transform = `translateX(${offset}px)`;
+      } else {
+        // Fully outside viewport
+        labelDiv.style.transform = "translateX(0px)";
+      }
+    });
+  }
+
+  // Update on scroll
+  scrollContainer.addEventListener("scroll", updatePosition);
+  // Update once at load
+  updatePosition();
+}
+
+/**** Centered Version of Time ****/
+// function applyObserver() {
+//   const scrollContainer = document.querySelector(".ec-header");
+//   const dayHeads = document.querySelectorAll(".ec-day-head");
+
+//   function updatePosition() {
+//     const containerRect = scrollContainer.getBoundingClientRect();
+
+//     dayHeads.forEach((head) => {
+//       const labelDiv = head.querySelector("time > div");
+//       if (!labelDiv) return;
+
+//       const headRect = head.getBoundingClientRect();
+//       const visibleLeft = Math.max(containerRect.left, headRect.left);
+//       const visibleRight = Math.min(containerRect.right, headRect.right);
+//       const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+
+//       if (visibleWidth > 0) {
+//         const labelWidth = labelDiv.offsetWidth;
+
+//         // Center in visible part
+//         let targetX =
+//           visibleLeft + visibleWidth / 2 - (headRect.left + labelWidth / 2);
+
+//         // Clamp so it never leaves the day head
+//         const minX = 0; // can't go past left boundary
+//         const maxX = headRect.width - labelWidth; // can't go past right boundary
+//         targetX = Math.max(minX, Math.min(targetX, maxX));
+
+//         labelDiv.style.transform = `translateX(${targetX}px)`;
+//         labelDiv.style.visibility = "visible";
+//       } else {
+//         labelDiv.style.visibility = "hidden";
+//       }
+//     });
+//   }
+
+//   scrollContainer.addEventListener("scroll", updatePosition);
+//   updatePosition();
+// }
+
+function refreshCalendarUI() {
+  initializeAllTooltips();
+  syncDynamicHeight();
+  applyObserver();
+}
+
 function createCalendar() {
   const ecEl = document.getElementById("ec");
 
@@ -1511,8 +1594,9 @@ function createCalendar() {
   const ec = EventCalendar.create(ecEl, {
     view: "resourceTimelineDay",
     initialView: "resourceTimelineDay",
-    slotWidth: "142", //249
+    slotWidth: "220", //249
     slotHeight: "80",
+    duration: { days: 10 },
     headerToolbar: false,
     editable: false,
     durationEditable: false,
@@ -1523,13 +1607,10 @@ function createCalendar() {
     eventContent: renderEventDetails,
     resourceLabelContent: renderResources,
     viewDidMount: renderSearch,
-    eventAllUpdated: () => {
-      initializeAllTooltips();
-      syncDynamicHeight();
-    },
+    eventAllUpdated: refreshCalendarUI,
 
     slotMinTime: "8:00:00",
-    slotMaxTime: "17:00:00",
+    slotMaxTime: "16:00:00",
   });
   window.ecCalendar = ec;
 }
@@ -1539,4 +1620,5 @@ window.addEventListener("DOMContentLoaded", function () {
   setIntialData();
   setupFilterDropdownsAndReset();
   chnageActivetab();
+  this.window.refreshCalendarUI = refreshCalendarUI;
 });

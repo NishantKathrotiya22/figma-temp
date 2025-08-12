@@ -57,7 +57,8 @@
     color: var(--text-toolbar);
 }
 
-.toolbar-btn p {
+.toolbar-btn p,
+.time-conatainer input {
     margin-top: 0.5rem;
     margin-bottom: 0.2rem;
 }
@@ -65,7 +66,6 @@
 .date-range {
     color: var(--text-toolbar);
 }
-
 
 .date-apply-btn {
     background-color: var(--btn-bg-color);
@@ -89,7 +89,41 @@
     color: var(--text-dark);
 }
 
+/** Start End Time    ***/
 
+.toolbar-time {
+    display: flex;
+    align-items: center;
+    /* gap: 0.5rem; */
+}
+
+.toolbar-time span {
+    margin-right: 1rem;
+}
+
+.toolbar-btn .time-conatainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 9rem;
+}
+
+.toolbar-btn .time-conatainer .starttime,
+.toolbar-btn .time-conatainer .endtime {
+    width: 90%;
+    border: none;
+    outline: none;
+    text-align: end;
+    color: var(--text-toolbar);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.time-conatainer img {
+    position: absolute;
+    left: 0%;
+    z-index: 1;
+}
 
 /********* Filter Container *************/
 
@@ -135,7 +169,8 @@
     gap: 0.5rem;
 }
 
-.action-btn:first-child img {
+.action-btn:first-child img,
+img[name="refreshIcon"] {
     transform: rotate(5deg);
 }
 
@@ -224,7 +259,7 @@ select:focus>option:hover {
     background: #000 !important;
 }
 
-/** Start End Time    ***/
+/** Start End Time (Filter)   ***/
 
 .time-selects {
     width: 100%;
@@ -276,17 +311,17 @@ select:focus>option:hover {
 
 
 /* Ensure ec-main fills 100% width */
-.ec-main {
+/* .ec-main {
     width: 100%;
     display: flex;
     flex-direction: column;
-}
+} */
 
 /* Make sure event cells stretch too */
-.ec-day {
+/* .ec-day {
     flex: 1 1 0;
     min-width: 0;
-}
+} */
 
 .ec-holder {
     width: 100%;
@@ -295,15 +330,62 @@ select:focus>option:hover {
 }
 
 .ec-container {
-    width: 100vw !important;
+    min-width: 100% !important;
     display: flex;
 }
 
 /* .ec-body  */
-.ex-main {
+
+/***** V0 *****/
+
+/* .ec-main {
     flex-grow: 1;
-    width: 100vw;
-    margin: auto;
+    width: 100%;
+} */
+
+
+/**** V1  ****/
+
+/* .ec-main {
+    border-right: 2px dashed var(--border-color);
+    min-width: 100%;
+    margin-left: 0;
+}
+
+.ec-body,
+.ec-header {
+    min-width: 100% !important;
+} */
+
+
+
+/**** V2 ****/
+
+
+/* .ec-body {
+    flex: 1 1 auto;
+    overflow: auto;
+    position: relative;
+}
+
+.ec-main {
+    display: inline-block;
+    min-height: 100%;
+    border-right: 2px dashed var(--border-color);
+} */
+
+
+/**** V3 ****/
+
+.ec-body {
+    flex: 1 1 auto;
+    overflow: auto;
+}
+
+.ec-main {
+    min-width: 100%;
+    display: inline-block;
+    border-right: 2px dashed var(--border-color);
 }
 
 /***** Fitting Serach Container at .ec-sidebar-title  *****/
@@ -421,7 +503,7 @@ select:focus>option:hover {
    ======================================================== */
 .ec-timeline .ec-time,
 .ec-timeline .ec-line {
-    width: 142px !important;
+    width: 220px !important;
     /* width: 249px !important; */
 }
 
@@ -720,4 +802,21 @@ select:focus>option:hover {
 .ec-day-head {
     --active-color: "#000";
     color: var(--active-color);
+}
+
+
+.ec-day-head time div {
+    width: fit-content;
+}
+
+.ec-day-head {
+    position: relative;
+    overflow: hidden;
+    /* Crops label when leaving */
+}
+
+.ec-day-head time>div {
+    position: relative;
+    white-space: nowrap;
+    font-size: small;
 }
