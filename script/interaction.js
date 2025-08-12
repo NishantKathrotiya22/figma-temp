@@ -220,7 +220,7 @@ $(".endtime").timepicker({
   defaultTime: "16",
   dynamic: false,
   dropdown: true,
-  scrollbar: true,
+  scrollbar: false,
 
   change: function (time) {
     const fullTime = formatTo24HourTime(time);

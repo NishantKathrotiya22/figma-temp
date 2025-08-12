@@ -239,6 +239,8 @@ img[name="refreshIcon"] {
 .dropdown-option {
     padding: 0.9rem;
     cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
     color: var(--text-light-1);
     background-color: var(--bg-main);
     border-bottom: 1px solid var(--border-color);
@@ -246,6 +248,11 @@ img[name="refreshIcon"] {
 
 .dropdown-option:hover,
 .dropdown-option:focus {
+    background-color: var(--filter-active-color);
+    color: var(--bg-main);
+}
+
+.selected-option {
     background-color: var(--filter-active-color);
     color: var(--bg-main);
 }

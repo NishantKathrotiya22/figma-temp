@@ -1342,10 +1342,12 @@ function setupFilterDropdownsAndReset() {
           if (!filterState[filterKey].includes(value)) {
             filterState[filterKey].push(value);
           }
+          e.target.classList.add("selected-option");
         } else {
           filterState[filterKey] = filterState[filterKey].filter(
             (v) => v !== value
           );
+          e.target.classList.remove("selected-option");
         }
 
         // Update dropdown text
@@ -1393,6 +1395,9 @@ function resetFilters() {
   // Reset search input
   const searchInput = document.querySelector(".search-input");
   if (searchInput) searchInput.value = "";
+
+  $(".starttime").timepicker("setTime", "8:00 AM");
+  $(".endtime").timepicker("setTime", "4:00 PM");
   applyAllFilters();
 }
 
