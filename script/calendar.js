@@ -20,13 +20,19 @@ let filterState = {
 //Global Data
 let eventData = [];
 let resourceData = [];
+let filterStatus = {
+  isLoading: false,
+  isEror: false,
+  region: [],
+  worktype: [],
+};
 
 function setIntialData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-08-13T11:45:00+05:30"),
-      end: new Date("2025-08-14T13:00:00+05:30"),
+      start: new Date("2025-08-18T11:45:00+05:30"),
+      end: new Date("2025-08-19T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -39,15 +45,15 @@ function setIntialData() {
         employeeName: "Diana Alexiou",
         address: "12 King Street, Newtown NSW 2042",
         careerType: "Care Type xyz",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-13T11:55:00+05:30"),
-      end: new Date("2025-08-13T13:00:00+05:30"),
+      start: new Date("2025-08-18T11:55:00+05:30"),
+      end: new Date("2025-08-18T13:00:00+05:30"),
       id: "123",
       type: "Full",
       slotEventOverlap: true,
@@ -60,15 +66,15 @@ function setIntialData() {
         employeeName: "Diana Alexiou",
         address: "12 King Street, Newtown NSW 2042",
         careerType: "Care Type xyz",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "2",
-      start: new Date("2025-08-13T12:00:00+05:30"),
-      end: new Date("2025-08-13T13:00:00+05:30"),
+      start: new Date("2025-08-18T12:00:00+05:30"),
+      end: new Date("2025-08-18T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -78,15 +84,15 @@ function setIntialData() {
         employeeName: "Olivia Clarke",
         address: "100 Elizabeth St, Sydney NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Scheduled",
+        bookingStatus: "cancelled",
         region: "Beacon - Blacktown",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-13T09:20:00+05:30"),
-      end: new Date("2025-08-13T11:00:00+05:30"),
+      start: new Date("2025-08-18T09:20:00+05:30"),
+      end: new Date("2025-08-18T11:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -96,15 +102,15 @@ function setIntialData() {
         employeeName: "Liam Bennett",
         address: "34 Pitt Street, Redfern NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "scheduled",
         region: "Bowral",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "1",
-      start: new Date("2025-08-13T10:35:00+05:30"),
-      end: new Date("2025-08-13T15:00:00+05:30"),
+      start: new Date("2025-08-18T10:35:00+05:30"),
+      end: new Date("2025-08-18T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -114,15 +120,15 @@ function setIntialData() {
         employeeName: "Liam Bennett",
         address: "34 Pitt Street, Redfern NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bowral",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-13T13:45:00+05:30"),
-      end: new Date("2025-08-13T15:00:00+05:30"),
+      start: new Date("2025-08-18T13:45:00+05:30"),
+      end: new Date("2025-08-18T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -132,15 +138,15 @@ function setIntialData() {
         employeeName: "Liam Bennett",
         address: "34 Pitt Street, Redfern NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bowral",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "4",
-      start: new Date("2025-08-13T01:45:00+05:30"),
-      end: new Date("2025-08-13T12:45:00+05:30"),
+      start: new Date("2025-08-18T01:45:00+05:30"),
+      end: new Date("2025-08-18T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -150,15 +156,15 @@ function setIntialData() {
         employeeName: "Mia Walker",
         address: "77 George St, The Rocks NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "5",
-      start: new Date("2025-08-13T10:00:00+05:30"),
-      end: new Date("2025-08-13T11:00:00+05:30"),
+      start: new Date("2025-08-18T10:00:00+05:30"),
+      end: new Date("2025-08-18T11:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -168,15 +174,15 @@ function setIntialData() {
         employeeName: "Ethan Johnson",
         address: "22 Oxford St, Darlinghurst NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Dural",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "6",
-      start: new Date("2025-08-13T08:00:00+05:30"),
-      end: new Date("2025-08-13T09:30:00+05:30"),
+      start: new Date("2025-08-18T08:00:00+05:30"),
+      end: new Date("2025-08-18T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -186,15 +192,15 @@ function setIntialData() {
         employeeName: "Chloe Walker",
         address: "5 High Street, Parramatta NSW",
         careerType: "Care Type A",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Hawkesbury",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "7",
-      start: new Date("2025-08-13T10:00:00+05:30"),
-      end: new Date("2025-08-13T11:15:00+05:30"),
+      start: new Date("2025-08-18T10:00:00+05:30"),
+      end: new Date("2025-08-18T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -204,15 +210,15 @@ function setIntialData() {
         employeeName: "Noah Carter",
         address: "88 Victoria Rd, Rydalmere NSW",
         careerType: "Care Type B",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Beacon - Blacktown",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "8",
-      start: new Date("2025-08-13T11:30:00+05:30"),
-      end: new Date("2025-08-13T13:00:00+05:30"),
+      start: new Date("2025-08-18T11:30:00+05:30"),
+      end: new Date("2025-08-18T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -222,15 +228,15 @@ function setIntialData() {
         employeeName: "Grace Foster",
         address: "33 Norton St, Leichhardt NSW",
         careerType: "Care Type C",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bowral",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "9",
-      start: new Date("2025-08-13T13:15:00+05:30"),
-      end: new Date("2025-08-13T14:45:00+05:30"),
+      start: new Date("2025-08-18T13:15:00+05:30"),
+      end: new Date("2025-08-18T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -240,15 +246,15 @@ function setIntialData() {
         employeeName: "Oscar Hughes",
         address: "50 King St, Mascot NSW",
         careerType: "Care Type D",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "10",
-      start: new Date("2025-08-13T09:00:00+05:30"),
-      end: new Date("2025-08-13T10:30:00+05:30"),
+      start: new Date("2025-08-18T09:00:00+05:30"),
+      end: new Date("2025-08-18T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -258,15 +264,15 @@ function setIntialData() {
         employeeName: "Liam Carter",
         address: "120 George St, Liverpool NSW",
         careerType: "Care Type A",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Dural",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "11",
-      start: new Date("2025-08-13T14:00:00+05:30"),
-      end: new Date("2025-08-13T15:00:00+05:30"),
+      start: new Date("2025-08-18T14:00:00+05:30"),
+      end: new Date("2025-08-18T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -276,15 +282,15 @@ function setIntialData() {
         employeeName: "Ava Reynolds",
         address: "78 Campbell St, Surry Hills NSW",
         careerType: "Care Type B",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Hawkesbury",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "12",
-      start: new Date("2025-08-13T10:45:00+05:30"),
-      end: new Date("2025-08-13T12:00:00+05:30"),
+      start: new Date("2025-08-18T10:45:00+05:30"),
+      end: new Date("2025-08-18T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -294,15 +300,15 @@ function setIntialData() {
         employeeName: "Freya Dawson",
         address: "101 Queen St, Beaconsfield NSW",
         careerType: "Care Type C",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Hawkesbury",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "13",
-      start: new Date("2025-08-13T08:30:00+05:30"),
-      end: new Date("2025-08-13T09:30:00+05:30"),
+      start: new Date("2025-08-18T08:30:00+05:30"),
+      end: new Date("2025-08-18T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -312,15 +318,15 @@ function setIntialData() {
         employeeName: "Sienna Brooks",
         address: "43 Main St, Zetland NSW",
         careerType: "Care Type D",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Dural",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "14",
-      start: new Date("2025-08-13T15:00:00+05:30"),
-      end: new Date("2025-08-13T16:30:00+05:30"),
+      start: new Date("2025-08-18T15:00:00+05:30"),
+      end: new Date("2025-08-18T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -330,15 +336,15 @@ function setIntialData() {
         employeeName: "Leo Murphy",
         address: "67 Bridge Rd, Glebe NSW",
         careerType: "Care Type A",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "15",
-      start: new Date("2025-08-13T13:00:00+05:30"),
-      end: new Date("2025-08-13T14:00:00+05:30"),
+      start: new Date("2025-08-18T13:00:00+05:30"),
+      end: new Date("2025-08-18T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -348,15 +354,15 @@ function setIntialData() {
         employeeName: "Lily Morgan",
         address: "19 Stanley St, Darlinghurst NSW",
         careerType: "Care Type B",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bowral",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "16",
-      start: new Date("2025-08-13T11:15:00+05:30"),
-      end: new Date("2025-08-13T12:45:00+05:30"),
+      start: new Date("2025-08-18T11:15:00+05:30"),
+      end: new Date("2025-08-18T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -366,15 +372,15 @@ function setIntialData() {
         employeeName: "Elliot Brooks",
         address: "55 Bay St, Botany NSW",
         careerType: "Care Type C",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Beacon - Blacktown",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "17",
-      start: new Date("2025-08-13T08:45:00+05:30"),
-      end: new Date("2025-08-13T10:00:00+05:30"),
+      start: new Date("2025-08-18T08:45:00+05:30"),
+      end: new Date("2025-08-18T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -384,15 +390,15 @@ function setIntialData() {
         employeeName: "Mason Green",
         address: "66 Clarence St, Sydney NSW",
         careerType: "Care Type D",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-13T14:15:00+05:30"),
-      end: new Date("2025-08-13T15:30:00+05:30"),
+      start: new Date("2025-08-18T14:15:00+05:30"),
+      end: new Date("2025-08-18T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -402,7 +408,7 @@ function setIntialData() {
         employeeName: "Isla Matthews",
         address: "20 Regent St, Chippendale NSW",
         careerType: "Care Type A",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bankstown",
         eventType: "Domestic Assistance Worker",
       },
@@ -562,8 +568,8 @@ function setLeaveData() {
   eventData = [
     {
       resourceId: "1",
-      start: new Date("2025-08-13T10:45:00+05:30"),
-      end: new Date("2025-08-13T12:00:00+05:30"),
+      start: new Date("2025-08-18T10:45:00+05:30"),
+      end: new Date("2025-08-18T12:00:00+05:30"),
       id: "123",
       type: "Full",
       editable: false,
@@ -575,15 +581,15 @@ function setLeaveData() {
         employeeName: "Diana Alexiou",
         address: "12 King Street, Newtown NSW 2042",
         careerType: "Care Type xyz",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "2",
-      start: new Date("2025-08-13T10:00:00+05:30"),
-      end: new Date("2025-08-13T10:00:00+05:30"),
+      start: new Date("2025-08-18T10:00:00+05:30"),
+      end: new Date("2025-08-18T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -593,15 +599,15 @@ function setLeaveData() {
         employeeName: "Olivia Clarke",
         address: "100 Elizabeth St, Sydney NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "3",
-      start: new Date("2025-08-13T13:30:00+05:30"),
-      end: new Date("2025-08-13T15:00:00+05:30"),
+      start: new Date("2025-08-18T13:30:00+05:30"),
+      end: new Date("2025-08-18T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -611,15 +617,15 @@ function setLeaveData() {
         employeeName: "Liam Bennett",
         address: "34 Pitt Street, Redfern NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bowral",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "4",
-      start: new Date("2025-08-13T09:45:00+05:30"),
-      end: new Date("2025-08-13T10:45:00+05:30"),
+      start: new Date("2025-08-18T09:45:00+05:30"),
+      end: new Date("2025-08-18T10:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -629,15 +635,15 @@ function setLeaveData() {
         employeeName: "Mia Walker",
         address: "77 George St, The Rocks NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "5",
-      start: new Date("2025-08-13T12:00:00+05:30"),
-      end: new Date("2025-08-13T13:00:00+05:30"),
+      start: new Date("2025-08-18T12:00:00+05:30"),
+      end: new Date("2025-08-18T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -647,15 +653,15 @@ function setLeaveData() {
         employeeName: "Ethan Johnson",
         address: "22 Oxford St, Darlinghurst NSW",
         careerType: "Care Type xyz",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Dural",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "6",
-      start: new Date("2025-08-13T08:00:00+05:30"),
-      end: new Date("2025-08-13T09:30:00+05:30"),
+      start: new Date("2025-08-18T08:00:00+05:30"),
+      end: new Date("2025-08-18T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -665,15 +671,15 @@ function setLeaveData() {
         employeeName: "Chloe Walker",
         address: "5 High Street, Parramatta NSW",
         careerType: "Care Type A",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Hawkesbury",
         eventType: "Care Worker",
       },
     },
     {
       resourceId: "7",
-      start: new Date("2025-08-13T10:00:00+05:30"),
-      end: new Date("2025-08-13T11:15:00+05:30"),
+      start: new Date("2025-08-18T10:00:00+05:30"),
+      end: new Date("2025-08-18T11:15:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -683,15 +689,15 @@ function setLeaveData() {
         employeeName: "Noah Carter",
         address: "88 Victoria Rd, Rydalmere NSW",
         careerType: "Care Type B",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Beacon - Blacktown",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "8",
-      start: new Date("2025-08-13T11:30:00+05:30"),
-      end: new Date("2025-08-13T13:00:00+05:30"),
+      start: new Date("2025-08-18T11:30:00+05:30"),
+      end: new Date("2025-08-18T13:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -701,15 +707,15 @@ function setLeaveData() {
         employeeName: "Grace Foster",
         address: "33 Norton St, Leichhardt NSW",
         careerType: "Care Type C",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bowral",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "9",
-      start: new Date("2025-08-13T13:15:00+05:30"),
-      end: new Date("2025-08-13T14:45:00+05:30"),
+      start: new Date("2025-08-18T13:15:00+05:30"),
+      end: new Date("2025-08-18T14:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -719,15 +725,15 @@ function setLeaveData() {
         employeeName: "Oscar Hughes",
         address: "50 King St, Mascot NSW",
         careerType: "Care Type D",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "10",
-      start: new Date("2025-08-13T09:00:00+05:30"),
-      end: new Date("2025-08-13T10:30:00+05:30"),
+      start: new Date("2025-08-18T09:00:00+05:30"),
+      end: new Date("2025-08-18T10:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -737,15 +743,15 @@ function setLeaveData() {
         employeeName: "Liam Carter",
         address: "120 George St, Liverpool NSW",
         careerType: "Care Type A",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Dural",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "11",
-      start: new Date("2025-08-13T14:00:00+05:30"),
-      end: new Date("2025-08-13T15:00:00+05:30"),
+      start: new Date("2025-08-18T14:00:00+05:30"),
+      end: new Date("2025-08-18T15:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -755,15 +761,15 @@ function setLeaveData() {
         employeeName: "Ava Reynolds",
         address: "78 Campbell St, Surry Hills NSW",
         careerType: "Care Type B",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Hawkesbury",
         eventType: "Domestic Assistance Worker",
       },
     },
     {
       resourceId: "12",
-      start: new Date("2025-08-13T10:45:00+05:30"),
-      end: new Date("2025-08-13T12:00:00+05:30"),
+      start: new Date("2025-08-18T10:45:00+05:30"),
+      end: new Date("2025-08-18T12:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -773,15 +779,15 @@ function setLeaveData() {
         employeeName: "Freya Dawson",
         address: "101 Queen St, Beaconsfield NSW",
         careerType: "Care Type C",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Hawkesbury",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "13",
-      start: new Date("2025-08-13T08:30:00+05:30"),
-      end: new Date("2025-08-13T09:30:00+05:30"),
+      start: new Date("2025-08-18T08:30:00+05:30"),
+      end: new Date("2025-08-18T09:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -791,15 +797,15 @@ function setLeaveData() {
         employeeName: "Sienna Brooks",
         address: "43 Main St, Zetland NSW",
         careerType: "Care Type D",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Dural",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "14",
-      start: new Date("2025-08-13T15:00:00+05:30"),
-      end: new Date("2025-08-13T16:30:00+05:30"),
+      start: new Date("2025-08-18T15:00:00+05:30"),
+      end: new Date("2025-08-18T16:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -809,15 +815,15 @@ function setLeaveData() {
         employeeName: "Leo Murphy",
         address: "67 Bridge Rd, Glebe NSW",
         careerType: "Care Type A",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Cityeast",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "15",
-      start: new Date("2025-08-13T13:00:00+05:30"),
-      end: new Date("2025-08-13T14:00:00+05:30"),
+      start: new Date("2025-08-18T13:00:00+05:30"),
+      end: new Date("2025-08-18T14:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -827,15 +833,15 @@ function setLeaveData() {
         employeeName: "Lily Morgan",
         address: "19 Stanley St, Darlinghurst NSW",
         careerType: "Care Type B",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bowral",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "16",
-      start: new Date("2025-08-13T11:15:00+05:30"),
-      end: new Date("2025-08-13T12:45:00+05:30"),
+      start: new Date("2025-08-18T11:15:00+05:30"),
+      end: new Date("2025-08-18T12:45:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -845,15 +851,15 @@ function setLeaveData() {
         employeeName: "Elliot Brooks",
         address: "55 Bay St, Botany NSW",
         careerType: "Care Type C",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Beacon - Blacktown",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "17",
-      start: new Date("2025-08-13T08:45:00+05:30"),
-      end: new Date("2025-08-13T10:00:00+05:30"),
+      start: new Date("2025-08-18T08:45:00+05:30"),
+      end: new Date("2025-08-18T10:00:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -863,15 +869,15 @@ function setLeaveData() {
         employeeName: "Mason Green",
         address: "66 Clarence St, Sydney NSW",
         careerType: "Care Type D",
-        bookingStatus: "Scheduled",
+        bookingStatus: "scheduled",
         region: "Bankstown",
         eventType: "Village Care Worker",
       },
     },
     {
       resourceId: "18",
-      start: new Date("2025-08-13T14:15:00+05:30"),
-      end: new Date("2025-08-13T15:30:00+05:30"),
+      start: new Date("2025-08-18T14:15:00+05:30"),
+      end: new Date("2025-08-18T15:30:00+05:30"),
       editable: false,
       durationEditable: false,
       eventStartEditable: false,
@@ -881,7 +887,7 @@ function setLeaveData() {
         employeeName: "Isla Matthews",
         address: "20 Regent St, Chippendale NSW",
         careerType: "Care Type A",
-        bookingStatus: "Completed",
+        bookingStatus: "unscheduled",
         region: "Bankstown",
         eventType: "Domestic Assistance Worker",
       },
@@ -1087,7 +1093,7 @@ function parseDate(date) {
   let label = `${weekday} - ${day}-${month}-${year} (Week-${parity})`;
 
   const colorMap = {
-    1: "#ff0026ff",
+    1: "#4F7AB3",
     2: "#225f27ff",
   };
 
@@ -1116,6 +1122,25 @@ function renderTooltipContent(arg) {
   `;
 }
 
+function renderStatusIcon(status) {
+  const icon = {
+    scheduled: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" color="#4F7AB3">
+                <path
+                    d="M15.3437 4.84375L16.5937 3.40625C16.8437 3.125 16.8125 2.65625 16.5313 2.40625C16.1875 2.15625 15.75 2.1875 15.5 2.5L14.1875 4.0625C13.1563 3.46875 11.9687 3.0625 10.7187 2.96875V1.9375H12.7188C13.0938 1.9375 13.4063 1.625 13.4063 1.25C13.4063 0.875 13.0938 0.5625 12.7188 0.5625H7.3125C6.9375 0.5625 6.625 0.875 6.625 1.25C6.625 1.625 6.9375 1.9375 7.3125 1.9375H9.3125V2.9375C5.0625 3.28125 1.71875 6.84375 1.71875 11.1875C1.71875 15.75 5.4375 19.4688 10 19.4688C14.5625 19.4688 18.2812 15.75 18.2812 11.1875C18.2812 8.65625 17.125 6.375 15.3437 4.84375ZM10 18.0625C6.21875 18.0625 3.125 14.9688 3.125 11.1875C3.125 7.40625 6.21875 4.3125 10 4.3125C13.7813 4.3125 16.875 7.40625 16.875 11.1875C16.875 14.9688 13.7813 18.0625 10 18.0625Z"
+                    fill="currentColor" />
+                <path
+                    d="M10.6875 11.0625V7.4375C10.6875 7.0625 10.375 6.75 10 6.75C9.625 6.75 9.3125 7.0625 9.3125 7.4375V11.3437C9.3125 11.5312 9.375 11.7188 9.53125 11.8438L11.8438 14.1562C11.9688 14.2812 12.1563 14.375 12.3438 14.375C12.5313 14.375 12.7188 14.3125 12.8438 14.1562C13.125 13.875 13.125 13.4375 12.8438 13.1562L10.6875 11.0625Z"
+                    fill="currentColor" />
+            </svg>`,
+    cancelled: `<svg xmlns="http://www.w3.org/2000/svg" fill="#FA5252" viewBox="0 0 50 50" width="20px" height="20px">
+                  <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"/>
+                </svg>`,
+    unscheduled: null,
+  };
+
+  return icon[status] || " ";
+}
+
 function renderEventDetails(arg) {
   const start = new Date(arg.event.start);
   const end = new Date(arg.event.end);
@@ -1142,21 +1167,16 @@ function renderEventDetails(arg) {
          title="${tooltipHtml}">
         <div class="event-disp">
             <p><span
-                    class="event-emp-id">${arg.event.extendedProps.employeeID}</span>${arg.event.extendedProps.employeeName}
+                    class="event-emp-id">${
+                      arg.event.extendedProps.employeeID
+                    }</span>${arg.event.extendedProps.employeeName}
             </p>
              <p>${arg.event.extendedProps.region}</p>
             <p>${arg.event.extendedProps.eventType}</p>
             <p>${arg.event.extendedProps.duration}</p>
         </div>
          <div class="event-disp-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                    d="M15.3437 4.84375L16.5937 3.40625C16.8437 3.125 16.8125 2.65625 16.5313 2.40625C16.1875 2.15625 15.75 2.1875 15.5 2.5L14.1875 4.0625C13.1563 3.46875 11.9687 3.0625 10.7187 2.96875V1.9375H12.7188C13.0938 1.9375 13.4063 1.625 13.4063 1.25C13.4063 0.875 13.0938 0.5625 12.7188 0.5625H7.3125C6.9375 0.5625 6.625 0.875 6.625 1.25C6.625 1.625 6.9375 1.9375 7.3125 1.9375H9.3125V2.9375C5.0625 3.28125 1.71875 6.84375 1.71875 11.1875C1.71875 15.75 5.4375 19.4688 10 19.4688C14.5625 19.4688 18.2812 15.75 18.2812 11.1875C18.2812 8.65625 17.125 6.375 15.3437 4.84375ZM10 18.0625C6.21875 18.0625 3.125 14.9688 3.125 11.1875C3.125 7.40625 6.21875 4.3125 10 4.3125C13.7813 4.3125 16.875 7.40625 16.875 11.1875C16.875 14.9688 13.7813 18.0625 10 18.0625Z"
-                    fill="currentColor" />
-                <path
-                    d="M10.6875 11.0625V7.4375C10.6875 7.0625 10.375 6.75 10 6.75C9.625 6.75 9.3125 7.0625 9.3125 7.4375V11.3437C9.3125 11.5312 9.375 11.7188 9.53125 11.8438L11.8438 14.1562C11.9688 14.2812 12.1563 14.375 12.3438 14.375C12.5313 14.375 12.7188 14.3125 12.8438 14.1562C13.125 13.875 13.125 13.4375 12.8438 13.1562L10.6875 11.0625Z"
-                    fill="currentColor" />
-            </svg>
+            ${renderStatusIcon(arg.event.extendedProps.bookingStatus)}
         </div>
         </div>
     `,
@@ -1387,6 +1407,10 @@ function resetFilters() {
     .querySelectorAll(".custom-dropdown input[type='checkbox']")
     .forEach((cb) => (cb.checked = false));
 
+  document
+    .querySelectorAll(".dropdown-option")
+    .forEach((cb) => cb.classList.remove("selected-option"));
+
   // Reset displayed text
   document
     .querySelectorAll(".value-display")
@@ -1588,6 +1612,27 @@ function refreshCalendarUI() {
   applyObserver();
 }
 
+function getTerritory() {
+  window.parent.Xrm.WebApi.retrieveMultipleRecords(
+    "territory",
+    "?$select=territoryid,name"
+  ).then(
+    function success(results) {
+      for (var i = 0; i < results.entities.length; i++) {
+        var result = results.entities[i];
+        // Columns
+        var territoryid = result["territoryid"]; // Guid
+        var name = result["name"]; // Text
+      }
+
+      return results?.entities;
+    },
+    function (error) {
+      console.log(error.message);
+    }
+  );
+}
+
 function createCalendar() {
   const ecEl = document.getElementById("ec");
 
@@ -1614,16 +1659,114 @@ function createCalendar() {
     viewDidMount: renderSearch,
     eventAllUpdated: refreshCalendarUI,
 
-    slotMinTime: "8:00:00",
-    slotMaxTime: "16:00:00",
+    slotMinTime: "6:00:00",
+    slotMaxTime: "18:00:00",
   });
   window.ecCalendar = ec;
+}
+
+function getTerritory() {
+  return window.parent.Xrm.WebApi.retrieveMultipleRecords(
+    "territory",
+    "?$select=territoryid,name"
+  );
+}
+
+function getCareType() {
+  return window.parent.Xrm.WebApi.retrieveMultipleRecords(
+    "EntityDefinitions",
+    "?$filter=LogicalName eq 'bookableresource'&$select=LogicalName&$expand=Attributes($filter=LogicalName eq 'resourcetype')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata($expand=OptionSet($select=Options))"
+  );
+}
+
+function renderDropdowns() {
+  const regionLabel = document.querySelector(
+    '[name="region-filter"] .value-display'
+  );
+  const worktypeLabel = document.querySelector(
+    '[name="work-type-filter"] .value-display'
+  );
+
+  const regionDropdown = document.querySelector(
+    '.custom-dropdown label[for="region-filter"]'
+  ).nextElementSibling.nextElementSibling; // the <ul> after region div
+
+  const worktypeDropdown = document.querySelector(
+    '.custom-dropdown label[for="work-type-filter"]'
+  ).nextElementSibling.nextElementSibling; // the <ul> after worktype div
+
+  if (!regionDropdown || !worktypeDropdown) {
+    console.error("❌ Could not find dropdown ULs");
+    return;
+  }
+
+  if (filterStatus.isLoading) {
+    regionLabel.textContent = "Loading...";
+    worktypeLabel.textContent = "Loading...";
+    return;
+  }
+
+  if (filterStatus.isError) {
+    regionLabel.textContent = "Error loading options";
+    worktypeLabel.textContent = "Error loading options";
+    return;
+  }
+
+  // ✅ Success case
+  regionLabel.textContent = "Select an option";
+  worktypeLabel.textContent = "Select an option";
+
+  // clear static <li> first
+  regionDropdown.innerHTML = "";
+  worktypeDropdown.innerHTML = "";
+
+  console.log("filterStatus", filterStatus);
+
+  // append new <li> from API
+  filterStatus.region.forEach((r) => {
+    regionDropdown.insertAdjacentHTML(
+      "beforeend",
+      `<li class="dropdown-option"><input type="checkbox" value="${r}" /> ${r}</li>`
+    );
+  });
+
+  filterStatus.worktype.forEach((w) => {
+    worktypeDropdown.insertAdjacentHTML(
+      "beforeend",
+      `<li class="dropdown-option"><input type="checkbox" value="${w}" /> ${w}</li>`
+    );
+  });
+}
+
+function handleFilterFetch() {
+  filterStatus.isLoading = true;
+  filterStatus.isError = false;
+  renderDropdowns();
+
+  getTerritory()
+    .then((results) => {
+      filterStatus.isLoading = false;
+      filterStatus.region = results.entities;
+      filterStatus.worktype = [];
+      renderDropdowns();
+      setupFilterDropdownsAndReset();
+    })
+    .catch((err) => {
+      console.error(err);
+      filterStatus.isLoading = false;
+      filterStatus.isError = true;
+      renderDropdowns();
+    });
+
+  getCareType()
+    .then((result) => console.log(result))
+    .catch((err) => console.log(err));
 }
 // --- INIT ---
 window.addEventListener("DOMContentLoaded", function () {
   createCalendar();
   setIntialData();
-  setupFilterDropdownsAndReset();
+  handleFilterFetch();
   chnageActivetab();
   this.window.refreshCalendarUI = refreshCalendarUI;
 });

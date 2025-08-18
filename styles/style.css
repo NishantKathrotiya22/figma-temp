@@ -709,7 +709,7 @@ select:focus>option:hover {
 
 
 /* ========================================================
-                        Timeline Vartiations
+                        Timeline Variation
    ======================================================== */
 
 
@@ -717,7 +717,8 @@ select:focus>option:hover {
 .ec-event-active {
     background-color: var(--timeline-bg) !important;
     border-left: 3px solid var(--timeline-text);
-    color: var(--timeline-text);
+    /* color: var(--timeline-text); */
+    color: #000000;
 }
 
 .ec-event-active::after {
@@ -740,7 +741,8 @@ select:focus>option:hover {
 .ec-event-yellow {
     background-color: var(--timeline-yellow-bg) !important;
     border-left: 3px solid var(--timeline-yellow-text);
-    color: var(--timeline-yellow-text);
+    /* color: var(--timeline-yellow-text); */
+    color: #000000;
 }
 
 .ec-event-yellow::after {
@@ -758,7 +760,8 @@ select:focus>option:hover {
 .ec-event-pink {
     background-color: var(--timeline-pink-bg) !important;
     border-left: 3px solid var(--timeline-pink-text);
-    color: var(--timeline-pink-text);
+    /* color: var(--timeline-pink-text); */
+    color: #000000;
 }
 
 .ec-event-pink::after {
@@ -783,7 +786,8 @@ select:focus>option:hover {
 .ec-event-gray {
     background-color: var(--timeline-gray-bg) !important;
     border-left: 3px solid var(--timeline-gray-text);
-    color: var(--timeline-gray-text);
+    /* color: var(--timeline-gray-text); */
+    color: #000000;
 }
 
 /**** Add Background Color To Event Holder ****/

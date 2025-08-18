@@ -193,8 +193,6 @@ function formatTo24HourTime(dateObj) {
 $(".starttime").timepicker({
   timeFormat: "h:mm p",
   interval: 30,
-  startTime: "08:00",
-  maxTime: "4:00pm",
   defaultTime: "08",
   dynamic: false,
   dropdown: true,
@@ -215,9 +213,7 @@ $(".starttime").timepicker({
 $(".endtime").timepicker({
   timeFormat: "h:mm p",
   interval: 30,
-  startTime: "09:00",
-  maxTime: "4:00pm",
-  defaultTime: "16",
+  defaultTime: "18",
   dynamic: false,
   dropdown: true,
   scrollbar: false,
