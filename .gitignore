@@ -3,3 +3,5 @@ API
 script/calendar-modular.js
 CRM-Baclup.js
 CRM.js
+config.bat
+node_modules
